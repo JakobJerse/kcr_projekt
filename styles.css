@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-h1 {
+h1, h2 {
   color: var(--color-text);
 }
 
@@ -92,4 +92,83 @@ body {
 
 .profile img:hover {
   transform: scale(1.1);
+}
+
+
+/* Sidebar Styling */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px; /* Bigger Sidebar */
+  background-color: var(--color-sidebar);
+  padding: 2rem 0;
+  height: 100vh;
+}
+
+/* Main content styling */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Arrange content vertically */
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px; /* Set a max width to avoid too large content */
+  margin: auto; /* Center the content horizontally within its container */
+}
+
+h1 {
+  color: var(--color-text);
+  margin-bottom: 1rem; /* Add spacing between the title and circles */
+}
+
+/* User Selection Styles */
+.user-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem; /* Space between text and user circles */
+}
+
+/* User Circle Styles */
+.user-circle {
+  width: 8rem; /* Adjust size as needed */
+  height: 8rem; /* Adjust size as needed */
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #444; /* Background color in case there's no image */
+  border: 2px solid var(--color-border);
+  transition: transform 0.3s ease;
+}
+
+.user-circle:hover {
+  transform: scale(1.1);
+}
+
+.user-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Plus Circle (Add User) */
+.user-circle.add-user {
+  background-color: var(--color-primary); /* Highlight the + circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 3rem; /* Larger "+" symbol */
+  font-weight: bold;
+}
+
+.user-circle.add-user:hover {
+  background-color: #0056b3; /* Darker shade on hover */
 }
