@@ -16,6 +16,6 @@ window.onload = function () {
     // Check if there's a selected user image stored
     if (profileImage) {
         // Update the profile image in the sidebar with the selected user image
-        document.getElementById('profileImage').src = './assets/' + profileImage;
+        document.getElementById('profileImage').src = '../assets/' + profileImage;
     }
 };
