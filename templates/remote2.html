@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalistic TV Remote</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Remote control styles */
+        .remote {
+            background: #e0e0e0;
+            border-radius: 20px;
+            width: 100%; /* Make the width flexible */
+            max-width: 160px; /* Increased max width */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            box-sizing: border-box; /* Make sure padding doesn't affect width */
+        }
+
+        /* Circular controls */
+        .circular-controls {
+            width: 120px; /* Increased width */
+            height: 120px; /* Increased height */
+            background: #d4d4d4;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circular-controls button {
+            position: absolute;
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 30px; /* Increased button size */
+            height: 30px; /* Increased button size */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .circular-controls .up {
+            top: 10px;
+        }
+
+        .circular-controls .down {
+            bottom: 10px;
+        }
+
+        .circular-controls .left {
+            left: 10px;
+        }
+
+        .circular-controls .right {
+            right: 10px;
+        }
+
+        .circular-controls .center {
+            background: #6200ea;
+            color: white;
+            width: 40px; /* Increased center button size */
+            height: 40px; /* Increased center button size */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        /* Button rows */
+        .button-row {
+            display: flex;
+            gap: 12px; /* Increased gap between buttons */
+            justify-content: center;
+        }
+
+        .button-row button {
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 36px; /* Increased button size */
+            height: 36px; /* Increased button size */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-row .voice {
+            background: #6200ea;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* Number buttons */
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px; /* Increased gap */
+            justify-items: center; /* Center buttons in the grid */
+        }
+
+        .numbers button {
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 36px; /* Increased button size */
+            height: 36px; /* Increased button size */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            text-align: center;
+            line-height: 36px;
+        }
+
+        /* Long buttons */
+        .long-button {
+            background: #ffffff;
+            border: none;
+            border-radius: 15px;
+            width: 70px; /* Increased button size */
+            height: 36px; /* Increased button size */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsiveness for mobile */
+        @media (max-width: 480px) {
+            .remote {
+                width: 90%; /* Reduce width on smaller screens */
+            }
+
+            .circular-controls {
+                width: 100px; /* Reduced size for mobile */
+                height: 100px; /* Reduced size for mobile */
+            }
+
+            .circular-controls button {
+                width: 25px; /* Reduced button size for mobile */
+                height: 25px; /* Reduced button size for mobile */
+            }
+
+            .circular-controls .center {
+                width: 35px; /* Reduced size for mobile */
+                height: 35px; /* Reduced size for mobile */
+                font-size: 14px;
+            }
+
+            .button-row button {
+                width: 30px; /* Reduced button size for mobile */
+                height: 30px; /* Reduced button size for mobile */
+            }
+
+            .numbers button {
+                width: 30px; /* Reduced button size for mobile */
+                height: 30px; /* Reduced button size for mobile */
+                font-size: 14px;
+            }
+
+            .long-button {
+                width: 60px; /* Reduced button size for mobile */
+                height: 30px; /* Reduced button size for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="remote">
+        <div class="circular-controls">
+            <button class="up" onclick="sendCommand('up')">▲</button>
+            <button class="down" onclick="sendCommand('down')">▼</button>
+            <button class="left" onclick="sendCommand('left')">◀</button>
+            <button class="right" onclick="sendCommand('right')">▶</button>
+            <button class="center" onclick="sendCommand('ok')">OK</button>
+        </div>
+        <div class="button-row">
+            <button class="voice" onclick="sendCommand('voice')">🎤</button>
+            <button class="search" onclick="sendCommand('search')">🔍</button>
+            <button class="back" onclick="sendCommand('back')">↩</button>
+        </div>
+        <div class="button-row">
+            <button class="rewind" onclick="sendCommand('rewind')">⏪</button>
+            <button class="play" onclick="sendCommand('play')">▶⏹</button>
+            <button class="forward" onclick="sendCommand('forward')">⏩</button>
+        </div>
+        <div class="button-row">
+            <button class="mute" onclick="sendCommand('mute')">🔇</button>
+            <button class="long-button" onclick="sendCommand('vol_up')">Vol +</button>
+            <button class="long-button" onclick="sendCommand('vol_down')">Vol -</button>
+        </div>
+        <div class="numbers">
+            <button onclick="sendCommand(1)">1</button>
+            <button onclick="sendCommand(2)">2</button>
+            <button onclick="sendCommand(3)">3</button>
+            <button onclick="sendCommand(4)">4</button>
+            <button onclick="sendCommand(5)">5</button>
+            <button onclick="sendCommand(6)">6</button>
+            <button onclick="sendCommand(7)">7</button>
+            <button onclick="sendCommand(8)">8</button>
+            <button onclick="sendCommand(9)">9</button>
+            <button onclick="sendCommand('*')">*</button>
+            <button onclick="sendCommand(0)">0</button>
+            <button onclick="sendCommand('#')">#</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+
+        function sendCommand(command) {
+            socket.emit('remote_command', { action: command });
+        }
+    </script>
+</body>
+</html>

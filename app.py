@@ -10,12 +10,13 @@ def tv_interface():
 
 @app.route('/remote')
 def remote_interface():
-    return render_template('tv_remote/remote2.html')
+    return render_template('remote2.html')
 
 @socketio.on('remote_command')
 def handle_remote_command(data):
     # Forward the command to all connected clients
     emit('command', data, broadcast=True)
+    print("Received command: " + str(data))
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host="0.0.0.0", port=5000)
