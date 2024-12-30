@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar UI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="stylesheet" href="../static/css/card-xl.css">
-    <link rel="stylesheet" href="../static/css/card-m.css">
-    <link rel="stylesheet" href="../static/css/card-progress.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-xl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-m.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-progress.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 
 <body>
     <div class="sidebar">
         <div class="menu">
-            <a href="./index.html" class="menu-item active"><img src="../assets/icons/home.svg" alt=""></a>
-            <a href="./recents.html" class="menu-item"><img src="../assets/icons/clock.svg" alt=""></a>
-            <a href="./favourites.html" class="menu-item"><img src="../assets/icons/star.svg" alt=""></a>
+            <a href="./index.html" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+            <a href="./recents.html" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+            <a href="./favourites.html" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
         </div>
         <div class="profile">
-            <a href="./landing.html"><img id="profileImage" src="../assets/user_profile.png" alt="User Profile"></a>
+            <a href="./landing.html"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
         </div>
     </div>
     <div class="container-fluid p-5">
@@ -32,7 +32,7 @@
             <div class="d-flex flex-row gap-5">
                 <div class="card card-xl">
                     <div class="card-image">
-                        <img src="../assets/images/channel1.webp" alt="Image 1">
+                        <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Image 1">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">TV Slovenija 1</span>
                         </div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="card card-xl">
                     <div class="card-image">
-                        <img src="../assets/images/channel2.webp" alt="Image 2">
+                        <img src="{{ url_for('static', filename='images/channel2.webp') }}" alt="Image 2">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">Pop TV</span>
                         </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="card card-xl">
                     <div class="card-image">
-                        <img src="../assets/images/channel3.jpg" alt="Image 3">
+                        <img src="{{ url_for('static', filename='images/channel3.jpg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">National Geographic</span>
                         </div>
@@ -63,7 +63,7 @@
             <div class="d-flex flex-row gap-5">
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/genre-sport.jpg" alt="Image 1">
+                        <img src="{{ url_for('static', filename='images/genre-documentary.jpeg') }}" alt="Image 1">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">Šport</span>
                         </div>
