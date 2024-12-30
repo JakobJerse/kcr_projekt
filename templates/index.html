@@ -16,9 +16,9 @@
 <body>
     <div class="sidebar">
         <div class="menu">
-            <a href="./index.html" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
-            <a href="./recents.html" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
-            <a href="./favourites.html" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+            <a href="{{ url_for('index') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+            <a href="{{ url_for('recents') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+            <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
         </div>
         <div class="profile">
             <a href="./landing.html"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/genre-romance.jpeg" alt="Image 2">
+                        <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 2">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">Romantični filmi</span>
                         </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/genre-horror.webp" alt="Image 3">
+                        <img src="{{ url_for('static', filename='images/genre-horror.webp') }}" alt="Image 3">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">Grozljivke</span>
                         </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/genre-documentary.jpeg" alt="Image 3">
+                        <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
                             <span class="channel-name fw-bold text-white">Dokumentarci</span>
                         </div>
@@ -102,7 +102,7 @@
             <div class="d-flex flex-row gap-5">
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/progress1.webp" alt="Image 1">
+                        <img src="{{ url_for('static', filename='images/progress1.webp') }}" alt="Image 1">
                         <div class="card-overlay p-4">
                             <div class="card-content">
                                 <h3 class="fw-bold text-white">Igra Prestolov: S1 E9</h3>
@@ -117,7 +117,7 @@
                 
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/progress2.jpg" alt="Image 2">
+                        <img src="{{ url_for('static', filename='images/progress2.jpg') }}" alt="Image 2">
                         <div class="card-overlay p-4">
                             <div class="card-content">
                                 <h3 class="fw-bold text-white">Dnevnik: 29. 11. 2024</h3>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/progress3.jpeg" alt="Image 3">
+                        <img src="{{ url_for('static', filename='images/progress3.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
                             <div class="card-content">
                                 <h3 class="fw-bold text-white">Barcelona vs. Real Madrid</h3>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="card card-m">
                     <div class="card-image">
-                        <img src="../assets/images/progress4.jpeg" alt="Image 3">
+                        <img src="{{ url_for('static', filename='images/progress4.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
                             <div class="card-content">
                                 <h3 class="fw-bold text-white">Lilly Phillips: Všeč mi je bilo</h3>

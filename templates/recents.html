@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recents Page</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <script src="../script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 
 <body>
     <div class="sidebar">
         <div class="menu">
-            <a href="./index.html" class="menu-item "><img src="../assets/icons/home.svg" alt=""></a>
-            <a href="./recents.html" class="menu-item active"><img src="../assets/icons/clock.svg" alt=""></a>
-            <a href="./favourites.html" class="menu-item"><img src="../assets/icons/star.svg" alt=""></a>
+            <a href="{{ url_for('index') }}" class="menu-item "><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+            <a href="{{ url_for('recents') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+            <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
         </div>
         <div class="profile">
-            <a href="./landing.html"><img id="profileImage" src="../assets/user_profile.png" alt="User Profile"></a>
+            <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
         </div>
     </div>
 
