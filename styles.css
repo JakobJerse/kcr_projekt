@@ -1,60 +1,95 @@
+/* Color Palette */
 :root {
   --color-background: #1a1a1a; 
   --color-sidebar: #0d0d0d; 
-  --color-primary: #00e6e6;      
-  --color-text: #ffffff;        
-  --color-text-muted: #b3b3b3; 
-  --color-border: #333333;
+  --color-primary: #007bff; /* Blue for active icon */
+  --color-text: #ffffff;    /* Default white */
+  --color-border: #333333;  
+  --color-hover-bg: rgba(255, 255, 255, 0.1); /* Background on hover */
 }
 
-
+/* Global Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-    background-color: var(--color-background)
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 80px;
-    background-color: var(--color-sidebar);
-    padding: 20px 0;
-  }
-  
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .menu-item {
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 24px;
-    text-align: center;
-    transition: color 0.3s;
-  }
-  
-  .menu-item:hover,
-  .menu-item.active {
-    color: var(--color-primary);
-  }
-  
-  .profile img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #00e6e6;
-  }
-  
+h1 {
+  color: var(--color-text);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: var(--color-background);
+}
+
+/* Sidebar Styling */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 7.5rem; /* 120px -> 7.5rem */
+  background-color: var(--color-sidebar);
+  padding: 1.25rem 0; /* 20px -> 1.25rem */
+  height: 100vh;
+}
+
+/* Menu Styling */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px -> 1.25rem */
+  align-items: center;
+}
+
+/* Menu Item Styling */
+.menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem; /* 80px -> 5rem */
+  height: 5rem; /* 80px -> 5rem */
+  border-radius: 0.5rem; /* 8px -> 0.5rem */
+  transition: background-color 0.3s;
+}
+
+/* Icon Default State */
+.menu-item img {
+  width: 2.25rem; /* 36px -> 2.25rem */
+  height: 2.25rem; /* 36px -> 2.25rem */
+  filter: brightness(0) saturate(100%) invert(100%);
+  transition: filter 0.3s;
+}
+
+/* Hover Effect - Background */
+.menu-item:hover {
+  background-color: var(--color-hover-bg);
+}
+
+/* Active State - Only Icon Color Changes */
+.menu-item.active img {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(94%) saturate(7471%) hue-rotate(179deg) brightness(99%) contrast(101%);
+}
+
+/* Profile Section */
+.profile {
+  margin-top: auto;
+  padding: 0.625rem 0; /* 10px -> 0.625rem */
+}
+
+.profile img {
+  width: 3.75rem; /* 60px -> 3.75rem */
+  height: 3.75rem; /* 60px -> 3.75rem */
+  border-radius: 50%;
+  border: 0.125rem solid var(--color-border); /* 2px -> 0.125rem */
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.profile img:hover {
+  transform: scale(1.1);
+}

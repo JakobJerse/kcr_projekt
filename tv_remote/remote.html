@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalistic TV Remote</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .remote {
+            background: #e0e0e0;
+            border-radius: 20px;
+            width: 140px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .circular-controls {
+            width: 80px;
+            height: 80px;
+            background: #d4d4d4;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circular-controls button {
+            position: absolute;
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .circular-controls .up {
+            top: 5px;
+        }
+
+        .circular-controls .down {
+            bottom: 5px;
+        }
+
+        .circular-controls .left {
+            left: 5px;
+        }
+
+        .circular-controls .right {
+            right: 5px;
+        }
+
+        .circular-controls .center {
+            background: #6200ea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button-row button {
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-row .voice {
+            background: #6200ea;
+            color: white;
+            font-size: 16px;
+        }
+
+        .long-button {
+            background: #ffffff;
+            border: none;
+            border-radius: 15px;
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .numbers button {
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="remote">
+        <div class="circular-controls">
+            <button class="up">▲</button>
+            <button class="down">▼</button>
+            <button class="left">◀</button>
+            <button class="right">▶</button>
+            <button class="center">OK</button>
+        </div>
+        <div class="button-row">
+            <button class="voice">🎤</button>
+            <button class="back">↩</button>
+        </div>
+        <div class="button-row">
+            <button class="play">▶</button>
+            <button class="stop">■</button>
+        </div>
+        <div class="button-row">
+            <button class="rewind">⏪</button>
+            <button class="forward">⏩</button>
+        </div>
+        <div class="button-row">
+            <button class="mute">🔇</button>
+            <button class="search">🔍</button>
+        </div>
+        <div class="button-row">
+            <button class="long-button">Vol +</button>
+            <button class="long-button">Vol -</button>
+        </div>
+        <div class="numbers">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>*</button>
+            <button>0</button>
+            <button>#</button>
+        </div>
+    </div>
+</body>
+</html>
