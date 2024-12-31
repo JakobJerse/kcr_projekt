@@ -48,7 +48,7 @@ body {
     flex-direction: column;
     justify-content: center;
     gap: 0;
-    height: 6em;
+    height: 80px;
     box-sizing: border-box;
 }
 
@@ -72,7 +72,7 @@ body {
 .progress-bar-container {
     width: auto;
     position: relative;
-    margin: 1% 1% 1% 1%;
+    margin: 1% 1% 0 1%;
     height: 10px;
     background: #555;
     border: 2px solid #aaa;
@@ -114,11 +114,10 @@ body {
     top: 0;
     left: -250px;
     width: 250px;
-    height: calc(100% - 96px);
+    height: calc(100% - 80px);
     background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
     color: white;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     transition: left 0.3s;
     display: flex;
     flex-direction: column;

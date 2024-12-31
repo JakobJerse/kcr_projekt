@@ -18,7 +18,7 @@ let hideControlsTimeout;
 let sidebarVisible = false;
 let hideSidebarTimeout;
 
-const cooldown = 5000;
+const cooldown = 50000;
 
 const maxTime = 5 * 60; 
 const totalSeconds = 5 * 60; // 5 minutes in seconds
