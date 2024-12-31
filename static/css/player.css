@@ -1,0 +1,176 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.player {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.videoscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg');
+    background-size: cover; /* Ensure the image covers the entire element */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    z-index: 1; /* Ensure it is behind the controls */
+}
+
+.controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 3; /* Ensure it is on top of the videoscreen */
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background to the controls */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    height: 6em;
+    box-sizing: border-box;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top: 2px;
+}
+
+.progress-bar-container {
+    width: auto;
+    position: relative;
+    margin: 1% 1% 1% 1%;
+    height: 10px;
+    background: #555;
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    min-height: 10px; /* Added min-height */
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 10px; /* Added min-height */
+}
+
+.progress {
+    height: 100%;
+    background: #007bff;
+    border-radius: 10px;
+    width: 0;
+}
+
+.progress-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #FFF;
+    border-radius: 50%;
+    top: -6px;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.controls.hidden {
+    opacity: 0;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: calc(100% - 96px);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    z-index: 2; /* Ensure it is on top of the videoscreen */
+}
+
+.sidebar.visible {
+    left: 0;
+}
+
+.time-display {
+    position: absolute;
+    bottom: 100%; /* Adjusted to be above the progress bar */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none; /* Ensure it doesn't interfere with mouse events */
+}
+
+.progress-bar-container:hover .time-display {
+    opacity: 1;
+}
+
+.progress-text {
+    color: white;
+    font-size: 25px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.channel-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.channel-item.selected {
+    background: #007bff;
+    border-radius: 5px;
+}

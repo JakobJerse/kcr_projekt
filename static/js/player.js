@@ -10,11 +10,18 @@ const progressHandle = document.getElementById('progress-handle');
 const controls = document.getElementById('controls');
 const player = document.getElementById('player');
 const sidebar = document.getElementById('sidebar');
+const timeDisplay = document.getElementById('time-display');
+const progressText = document.getElementById('progress-text');
 
 let controlsVisible = true;
 let hideControlsTimeout;
 let sidebarVisible = false;
 let hideSidebarTimeout;
+
+const cooldown = 5000;
+
+const maxTime = 5 * 60; 
+const totalSeconds = 5 * 60; // 5 minutes in seconds
 
 playPauseBtn.addEventListener('click', togglePlayPause);
 
@@ -29,7 +36,6 @@ function togglePlayPause() {
 }
 
 function startProgress() {
-    width = 0; // Reset width when starting progress
     interval = setInterval(() => {
         if (width >= 100) {
             clearInterval(interval);
@@ -49,6 +55,8 @@ function stopProgress() {
 function updateProgress(value) {
     progress.style.width = value + '%';
     progressHandle.style.left = value + '%';
+    updateTimeDisplay(value);
+    updateProgressText(value);
 }
 
 progressBar.addEventListener('click', (e) => {
@@ -128,7 +136,7 @@ function resetHideControlsTimeout() {
     hideControlsTimeout = setTimeout(() => {
         hideControls();
         controlsVisible = false;
-    }, 3000);
+    }, cooldown);
 }
 
 function toggleSidebar() {
@@ -147,7 +155,7 @@ function resetHideSidebarTimeout() {
     hideSidebarTimeout = setTimeout(() => {
         sidebar.classList.remove('visible');
         sidebarVisible = false;
-    }, 3000);
+    }, cooldown);
 }
 
 document.addEventListener('keydown', (e) => {
@@ -155,4 +163,102 @@ document.addEventListener('keydown', (e) => {
         toggleSidebar();
     }
 });
+
+function updateTimeDisplay(value) {
+    if (value < 0) {
+        value = 0;
+    }
+    const rect = progressBar.getBoundingClientRect();
+    const handleRect = progressHandle.getBoundingClientRect();
+    const percentage = value / 100;
+    const currentTime = totalSeconds * percentage;
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = Math.floor(currentTime % 60);
+    timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    timeDisplay.style.left = `${value}%`;
+}
+
+function updateProgressText(value) {
+    const currentTime = totalSeconds * (value / 100);
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = Math.floor(currentTime % 60);
+    progressText.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / 5:00`;
+}
+
+progressBar.addEventListener('mousemove', function(e) {
+    const rect = progressBar.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    let width = (offsetX / rect.width) * 100;
+    updateTimeDisplay(width);
+    timeDisplay.style.opacity = 1;
+});
+
+progressBar.addEventListener('mouseleave', function() {
+    timeDisplay.style.opacity = 0;
+});
+
+let isDragging = false;
+
+progressHandle.addEventListener('mousedown', function() {
+    isDragging = true;
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', onStopDrag);
+});
+
+function onDrag(e) {
+    if (!isDragging) return;
+    const rect = progressBar.getBoundingClientRect();
+    let offsetX = e.clientX - rect.left;
+    offsetX = Math.max(0, Math.min(offsetX, rect.width)); // Ensure within bounds
+    progressHandle.style.left = `${offsetX}px`;
+    timeDisplay.style.left = `${offsetX}px`;
+}
+
+function onStopDrag() {
+    isDragging = false;
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', onStopDrag);
+}
+
+// Initial call to set the time display
+updateTimeDisplay(0);
+updateProgressText(0);
+
 resetHideControlsTimeout();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const channels = ['Channel 1', 'Channel 2', 'Channel 3'];
+    const channelListContainer = document.querySelector('.channel-list');
+
+    // Generate the HTML for the channel items
+    channels.forEach((channel) => {
+        const channelItem = document.createElement('div');
+        channelItem.classList.add('channel-item');
+        channelItem.textContent = channel;
+        channelListContainer.appendChild(channelItem);
+    });
+
+    const channelItems = document.querySelectorAll('.channel-item');
+    let selectedIndex = 0;
+
+    function updateSelection() {
+        channelItems.forEach((item, index) => {
+            item.classList.toggle('selected', index === selectedIndex);
+        });
+    }
+
+    updateSelection();
+
+    document.addEventListener('keydown', function(e) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && sidebar.classList.contains('visible') && channelItems.length > 0) {
+            if (e.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : channelItems.length - 1;
+                updateSelection();
+            } else if (e.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex < channelItems.length - 1) ? selectedIndex + 1 : 0;
+                updateSelection();
+            }
+        }
+    });
+});
