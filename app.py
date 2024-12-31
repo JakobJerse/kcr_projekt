@@ -5,8 +5,8 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def landing():
+    return render_template('landing.html')
 
 @app.route('/recents')
 def recents():
@@ -20,9 +20,9 @@ def favourites():
 def remote():
     return render_template('remote2.html')
 
-@app.route('/landing')
-def landing():
-    return render_template('landing.html')
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @socketio.on('remote_command')
 def handle_remote_command(data):

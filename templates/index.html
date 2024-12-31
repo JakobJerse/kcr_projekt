@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-m.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-progress.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script>
+        const indexUrl = "{{ url_for('index') }}";
+        const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
+    </script>
 </head>
 
 <body>
@@ -21,7 +25,7 @@
             <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
         </div>
         <div class="profile">
-            <a href="./landing.html"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+            <a href={{ url_for('landing') }}><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
         </div>
     </div>
     <div class="container-fluid p-5">
