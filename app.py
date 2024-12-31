@@ -5,12 +5,24 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 @app.route('/')
-def tv_interface():
+def index():
     return render_template('index.html')
 
+@app.route('/recents')
+def recents():
+    return render_template('recents.html')
+
+@app.route('/favourites')
+def favourites():
+    return render_template('favourites.html')
+
 @app.route('/remote')
-def remote_interface():
+def remote():
     return render_template('remote2.html')
+
+@app.route('/landing')
+def landing():
+    return render_template('landing.html')
 
 @socketio.on('remote_command')
 def handle_remote_command(data):

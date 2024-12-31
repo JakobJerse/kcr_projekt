@@ -1,4 +1,3 @@
-// Function to handle user selection
 function selectUser(profileImage) {
     // Store the selected user's image name in localStorage
     console.log('essa')
