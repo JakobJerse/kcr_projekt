@@ -24,6 +24,10 @@ def remote():
 def landing():
     return render_template('landing.html')
 
+@app.route('/player')
+def player():
+    return render_template('player.html')
+
 @socketio.on('remote_command')
 def handle_remote_command(data):
     # Forward the command to all connected clients
