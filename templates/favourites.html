@@ -7,6 +7,10 @@
     <title>Recents Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script>
+        const indexUrl = "{{ url_for('index') }}";
+        const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
+    </script>
 </head>
 
 <body>

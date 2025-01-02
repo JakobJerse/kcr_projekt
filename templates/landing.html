@@ -4,8 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recents Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <script
+      src="{{ url_for('static', filename='js/script.js') }}"
+      defer
+    ></script>
+    <script>
+        const indexUrl = "{{ url_for('index') }}";
+        const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
+    </script>
   </head>
 
   <body>
@@ -16,13 +26,16 @@
       <div class="user-selection">
         <!-- User Circles as Buttons -->
         <button class="user-circle" onclick="selectUser('user_profile.png')">
-          <img src="../assets/user_profile.png" alt="User 1" />
+          <img src={{ url_for('static', filename='images/user_profile.png')}}
+          alt="User 1" />
         </button>
         <button class="user-circle" onclick="selectUser('user_profile2.png')">
-          <img src="../assets/user_profile2.png" alt="User 2" />
+          <img src={{ url_for('static', filename='images/user_profile2.png')}}
+          alt="User 1" />
         </button>
         <button class="user-circle" onclick="selectUser('user_profile3.png')">
-          <img src="../assets/user_profile3.png" alt="User 3" />
+          <img src={{ url_for('static', filename='images/user_profile3.png')}}
+          alt="User 1" />
         </button>
 
         <!-- Plus Circle -->
