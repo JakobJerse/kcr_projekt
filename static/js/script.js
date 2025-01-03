@@ -11,22 +11,33 @@ window.onload = function () {
 };
 
 
-function openPreview(channelName, desc, imageUrl) {
+function openPreview(channelName, desc, imageUrl, buttonText = 'Glej v živo', flag = false) {
     const modal = document.getElementById('previewModal');
     const title = document.getElementById('previewTitle');
     const modalImage = modal.querySelector('.preview-image img');
     const description = document.getElementById('previewDescription');
     const playButton = document.querySelector('.play-btn');
+    const startOverButton = document.querySelector('.start-over-btn');
 
     // Update modal content dynamically
     title.textContent = `${channelName}`;
     modalImage.src = imageUrl;
     modalImage.alt = channelName;
     description.textContent = desc;
+    playButton.innerHTML = `<i class="fa-solid fa-tv"></i> ${buttonText}`;
+    if (flag) {
+        startOverButton.innerHTML = `<i class="fa-solid fa-clock-rotate-left"></i> Glej od začetka`;
+    }
+    else {
+        startOverButton.classList.add('hidden');
+        startOverButton.classList.add('primary-button');
+    }
+    startOverButton.onclick = () => playChannel(channelName);
     playButton.onclick = () => playChannel(channelName);
 
     modal.style.display = 'flex';
 }
+
 
 function closePreview() {
     const modal = document.getElementById('previewModal');
