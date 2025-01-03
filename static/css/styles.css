@@ -6,6 +6,7 @@
   --color-text: #ffffff;    /* Default white */
   --color-border: #333333;  
   --color-hover-bg: rgba(255, 255, 255, 0.1); /* Background on hover */
+  --color-hover-button: #0056b3;
 }
 
 html {
@@ -223,4 +224,21 @@ h1 {
   box-sizing: border-box;
 }
 
+.primary-button {
+ background-color: var(--color-primary) !important;
+ margin-top: 1rem;
+}
+
+.primary-button:hover {
+  background-color: var(--color-hover-button) !important;
+}
+
+.close-button:hover {
+  background-color: lightgray;
+}
+
+.details-description {
+  display: flex;
+  justify-content: start;
+}
 

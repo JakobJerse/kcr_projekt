@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar UI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-xl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-m.css') }}">
@@ -35,7 +36,7 @@
         </div>
         <div class="row mb-5">
             <div class="d-flex flex-row gap-5">
-                <div class="card card-xl" onclick="openPreview('TV Slovenija 1', '{{ url_for('static', filename='images/channel1.webp') }}')">
+                <div class="card card-xl" onclick="openPreview('TV Slovenija 1', 'Slovenski pozdrav - razvedrilna oddaja.', '{{ url_for('static', filename='images/channel1.webp') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Image 1">
                         <div class="card-overlay p-4">
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-xl" onclick="openPreview('Pop TV', '{{ url_for('static', filename='images/channel2.webp') }}')">
+                <div class="card card-xl" onclick="openPreview('Pop TV', '24UR - Informativna oddaja ob 19:00.', '{{ url_for('static', filename='images/channel2.webp') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/channel2.webp') }}" alt="Image 2">
                         <div class="card-overlay p-4">
@@ -51,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-xl" onclick="openPreview('National Geographic', '{{ url_for('static', filename='images/channel3.jpg') }}')">
+                <div class="card card-xl" onclick="openPreview('National Geographic', 'Lev - Kralj živali - dokumentarni film.', '{{ url_for('static', filename='images/channel3.jpg') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/channel3.jpg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -66,7 +67,7 @@
         </div>
         <div class="row mb-5">
             <div class="d-flex flex-row gap-5">
-                <div class="card card-m" onclick="openPreview('Šport', '{{ url_for('static', filename='images/genre-documentary.jpeg') }}')">
+                <div class="card card-m" onclick="openPreview('Šport', '', '{{ url_for('static', filename='images/genre-documentary.jpeg') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-documentary.jpeg') }}" alt="Image 1">
                         <div class="card-overlay p-4">
@@ -74,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m" onclick="openPreview('Romantični filmi', '{{ url_for('static', filename='images/genre-romance.jpeg') }}')">
+                <div class="card card-m" onclick="openPreview('Romantični filmi', '', '{{ url_for('static', filename='images/genre-romance.jpeg') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 2">
                         <div class="card-overlay p-4">
@@ -82,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m" onclick="openPreview('Grozljivke', '{{ url_for('static', filename='images/genre-horror.webp') }}')">
+                <div class="card card-m" onclick="openPreview('Grozljivke', '', '{{ url_for('static', filename='images/genre-horror.webp') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-horror.webp') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -105,7 +106,7 @@
         </div>
         <div class="row mb-5">
             <div class="d-flex flex-row gap-5">
-                <div class="card card-m" onclick="openPreview('Igra Prestolov: S1 E9', '{{ url_for('static', filename='images/progress1.webp') }}')">
+                <div class="card card-m" onclick="openPreview('Igra Prestolov: S1 E9', 'Igra Prestolov - HBO - Serija, S1 E9.', '{{ url_for('static', filename='images/progress1.webp') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress1.webp') }}" alt="Image 1">
                         <div class="card-overlay p-4">
@@ -119,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m" onclick="openPreview('Dnevnik: 29. 11. 2024', '{{ url_for('static', filename='images/progress2.jpg') }}')">
+                <div class="card card-m" onclick="openPreview('Dnevnik: 29. 11. 2024', 'Dnevnik TV SLO - Informativna oddaja ob 19ih.',  '{{ url_for('static', filename='images/progress2.jpg') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress2.jpg') }}" alt="Image 2">
                         <div class="card-overlay p-4">
@@ -133,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m" onclick="openPreview('Barcelona vs. Real Madrid', '{{ url_for('static', filename='images/progress3.jpeg') }}')">
+                <div class="card card-m" onclick="openPreview('Barcelona vs. Real Madrid', 'LaLiga - 16. krog - Barcelona vs Real Madrid.', '{{ url_for('static', filename='images/progress3.jpeg') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress3.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -147,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m" onclick="openPreview('Lilly Phillips: Všeč mi je bilo', '{{ url_for('static', filename='images/progress4.jpeg') }}')">
+                <div class="card card-m" onclick="openPreview('Lilly Phillips: Všeč mi je bilo', 'Dokumentarni film o zvezdnici vsebin za odrasle - Lilly Phillips.', '{{ url_for('static', filename='images/progress4.jpeg') }}')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress4.jpeg') }}" alt="Image 4">
                         <div class="card-overlay p-4">
@@ -170,7 +171,7 @@
     <div id="previewModal" class="preview-modal">
         <div class="preview-content">
             <!-- Round Close Button -->
-            <button class="close-btn" onclick="closePreview()">×</button>
+            <button class="close-btn close-button" onclick="closePreview()">×</button>
     
             <!-- Title -->
             <h2 id="previewTitle" class="text-white"></h2>
@@ -181,12 +182,11 @@
             </div>
     
             <!-- Additional Text -->
-            <p id="previewDescription" class="text-white">
-                Enjoy a sneak peek of this channel before starting playback. Discover exciting content and programs!
+            <p id="previewDescription" class="text-white details-description">
             </p>
     
             <!-- Play Button -->
-            <button class="play-btn">Play</button>
+            <button class="play-btn primary-button"><i class="fa-solid fa-tv"></i>  Glej v živo</button>
         </div>
     </div>
     
