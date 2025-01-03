@@ -13,16 +13,19 @@
       defer
     ></script>
     <script>
-        const indexUrl = "{{ url_for('index') }}";
-        const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
+      const indexUrl = "{{ url_for('index') }}";
+      const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
     </script>
+    <script
+      src="{{ url_for('static', filename='js/script.js') }}"
+      defer
+    ></script>
   </head>
 
   <body>
-    <div class="content">
+    <div class="user-selection-container">
       <h1>Pozdravljeni!</h1>
       <h2>Izberite uporabnika</h2>
-
       <div class="user-selection">
         <!-- User Circles as Buttons -->
         <button class="user-circle" onclick="selectUser('user_profile.png')">
