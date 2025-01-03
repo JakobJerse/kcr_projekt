@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
@@ -26,7 +26,9 @@ def index():
 
 @app.route('/player')
 def player():
-    return render_template('player.html')
+    channel_name = request.args.get('channel', 'Default Channel')  # Default fallback
+    return render_template('player.html', channel=channel_name)
+
 
 @socketio.on('remote_command')
 def handle_remote_command(data):
