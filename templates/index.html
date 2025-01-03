@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-xl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-m.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-progress.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/preview.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     <script>
         const indexUrl = "{{ url_for('index') }}";
@@ -34,7 +35,7 @@
         </div>
         <div class="row mb-5">
             <div class="d-flex flex-row gap-5">
-                <div class="card card-xl">
+                <div class="card card-xl" onclick="openPreview('TV Slovenija 1')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Image 1">
                         <div class="card-overlay p-4">
@@ -42,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-xl">
+                <div class="card card-xl" onclick="openPreview('Pop TV')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/channel2.webp') }}" alt="Image 2">
                         <div class="card-overlay p-4">
@@ -50,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-xl">
+                <div class="card card-xl" onclick="openPreview('National Geographic')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/channel3.jpg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -65,7 +66,7 @@
         </div>
         <div class="row mb-5">
             <div class="d-flex flex-row gap-5">
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('Šport')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-documentary.jpeg') }}" alt="Image 1">
                         <div class="card-overlay p-4">
@@ -73,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('Romantični filmi')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 2">
                         <div class="card-overlay p-4">
@@ -81,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('Grozljivke')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-horror.webp') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -89,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('Dokumentarci')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -104,7 +105,7 @@
         </div>
         <div class="row mb-5">
             <div class="d-flex flex-row gap-5">
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('Igra Prestolov: S1 E9')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress1.webp') }}" alt="Image 1">
                         <div class="card-overlay p-4">
@@ -119,7 +120,7 @@
                     </div>
                 </div>
                 
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('TV Slovenija 1')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress2.jpg') }}" alt="Image 2">
                         <div class="card-overlay p-4">
@@ -133,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('TV Slovenija 2')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress3.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -147,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-m">
+                <div class="card card-m" onclick="openPreview('TLC')">
                     <div class="card-image">
                         <img src="{{ url_for('static', filename='images/progress4.jpeg') }}" alt="Image 3">
                         <div class="card-overlay p-4">
@@ -164,6 +165,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal for Preview -->
+    <div id="previewModal" class="preview-modal">
+        <div class="preview-content">
+            <!-- Round Close Button -->
+            <button class="close-btn" onclick="closePreview()">×</button>
+    
+            <!-- Title -->
+            <h2 id="previewTitle" class="text-white"></h2>
+    
+            <!-- Image -->
+            <div class="preview-image">
+                <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Preview Image">
+            </div>
+    
+            <!-- Additional Text -->
+            <p id="previewDescription" class="text-white">
+                Enjoy a sneak peek of this channel before starting playback. Discover exciting content and programs!
+            </p>
+    
+            <!-- Play Button -->
+            <button class="play-btn">Play</button>
+        </div>
+    </div>
+    
 </body>
 
 </html>
