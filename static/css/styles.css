@@ -120,6 +120,17 @@ h1 {
   margin-top: 2rem; /* Space between text and user circles */
 }
 
+.user-item {
+  text-align: center;
+}
+
+.user-item p {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: var(--color-text);
+  font-weight: bold;
+}
+
 /* User Circle Styles */
 .user-circle {
   width: 8rem; /* Adjust size as needed */

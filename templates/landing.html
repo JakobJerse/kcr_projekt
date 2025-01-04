@@ -28,23 +28,34 @@
       <h2>Izberite uporabnika</h2>
       <div class="user-selection">
         <!-- User Circles as Buttons -->
-        <button class="user-circle" onclick="selectUser('user_profile.png')">
-          <img src={{ url_for('static', filename='images/user_profile.png')}}
-          alt="User 1" />
-        </button>
-        <button class="user-circle" onclick="selectUser('user_profile2.png')">
-          <img src={{ url_for('static', filename='images/user_profile2.png')}}
-          alt="User 1" />
-        </button>
-        <button class="user-circle" onclick="selectUser('user_profile3.png')">
-          <img src={{ url_for('static', filename='images/user_profile3.png')}}
-          alt="User 1" />
-        </button>
+        <div class="user-item">
+          <button class="user-circle" onclick="selectUser('user_profile.png', 'Pozdravljen, Nejc!')">
+            <img src={{ url_for('static', filename='images/user_profile.png') }}
+            alt="User 1" />
+          </button>
+          <p>Nejc</p>
+        </div>
+        <div class="user-item">
+          <button class="user-circle" onclick="selectUser('user_profile2.png', 'Ooo, Kristina!')">
+            <img src={{ url_for('static', filename='images/user_profile2.png')
+            }} alt="User 2" />
+          </button>
+          <p>Kristina</p>
+        </div>
+        <div class="user-item">
+          <button class="user-circle" onclick="selectUser('user_profile3.png', 'Pozdravljen, Cene!')">
+            <img src={{ url_for('static', filename='images/user_profile3.png')
+            }} alt="User 3" />
+          </button>
+          <p>Cene</p>
+        </div>
 
         <!-- Plus Circle -->
-        <button class="user-circle add-user">
-          <span>+</span>
-        </button>
+        <div class="user-item">
+          <button class="user-circle add-user">
+            <span>+</span>
+          </button>
+          <p>Dodaj uporabnika</p>
       </div>
     </div>
   </body>

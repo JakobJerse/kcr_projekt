@@ -1,12 +1,17 @@
-function selectUser(profileImage) {
+function selectUser(profileImage, username) {
     localStorage.setItem('selectedUser', profileImage);
+    localStorage.setItem('selectedUserName', username);
     window.location.href = indexUrl;
 }
 
 window.onload = function () {
     const profileImage = localStorage.getItem('selectedUser');
+    const username = localStorage.getItem('selectedUserName');
     if (profileImage) {
         document.getElementById('profileImage').src = staticImagesUrl + profileImage;
+    }
+    if (username) {
+        document.getElementById('username').textContent = username;
     }
 };
 
