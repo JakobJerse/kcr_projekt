@@ -16,31 +16,39 @@ window.onload = function () {
 };
 
 
-function openPreview(channelName, desc, imageUrl, buttonText = 'Glej v živo', flag = false) {
+function openPreview(channelName, imageUrl, buttonText = 'Glej v živo', flag = false, genre = '', streamingPlatform = '', info = '', cast = '') {
     const modal = document.getElementById('previewModal');
     const title = document.getElementById('previewTitle');
     const modalImage = modal.querySelector('.preview-image img');
-    const description = document.getElementById('previewDescription');
     const playButton = document.querySelector('.play-btn');
     const startOverButton = document.querySelector('.start-over-btn');
+    const genreSpan = document.getElementById('previewGenre');
+    const infoSpan = document.getElementById('previewInfo');
+    const streamingPlatformSpan = document.getElementById('previewStreamingPlatform');
+    const castSpan = document.getElementById('previewCast');
 
     // Update modal content dynamically
-    title.textContent = `${channelName}`;
+    title.textContent = channelName;
     modalImage.src = imageUrl;
     modalImage.alt = channelName;
-    description.textContent = desc;
+    genreSpan.textContent = genre;
+    infoSpan.textContent = info;
+    streamingPlatformSpan.textContent = streamingPlatform;
+    castSpan.textContent = cast;
+
     playButton.innerHTML = `<i class="fa-solid fa-tv"></i> ${buttonText}`;
     if (flag) {
         startOverButton.innerHTML = `<i class="fa-solid fa-clock-rotate-left"></i> Glej od začetka`;
-    }
-    else {
+    } else {
         startOverButton.classList.add('hidden');
     }
+
     startOverButton.onclick = () => playChannel(channelName);
     playButton.onclick = () => playChannel(channelName);
 
     modal.style.display = 'flex';
 }
+
 
 
 function closePreview() {
