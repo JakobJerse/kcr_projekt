@@ -62,6 +62,9 @@ function playChannel(channelName) {
 
 
 
+const socket = io();
+const tvContent = document.getElementById('tvContent'); // Optional: for debugging or displaying actions
+
 document.addEventListener("DOMContentLoaded", () => {
     let focusIndex = 0; // Tracks the currently focused element
     const sidebar = document.querySelector(".sidebar");
@@ -181,7 +184,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Listen for commands from the remote via socket.io
+    socket.on('command', (data) => {
+        const action = data.action;
+
+        if (action === 'up' || action === 'down' || action === 'left' || action === 'right') {
+            moveFocus(action); // Move focus based on the command
+            tvContent.textContent = `Moved ${action}`; // Optional: Show the action
+        } else if (action === 'ok') {
+            const focusedElement = focusables[focusIndex];
+            if (focusedElement) {
+                focusedElement.click(); // Simulate a click on the focused element
+            }
+            tvContent.textContent = `OK Pressed`; // Optional: Show the action
+        } else if (action === 'play') {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            alert("Got you SON of a GUN!"); // Redirect to a video
+        }
+    });
+
     updateFocus(); // Initialize focus
 });
-
-

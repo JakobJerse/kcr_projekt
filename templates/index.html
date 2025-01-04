@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-progress.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/preview.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script>
         const indexUrl = "{{ url_for('index') }}";
         const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
