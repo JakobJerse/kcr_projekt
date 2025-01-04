@@ -230,6 +230,6 @@ h1 {
 }
 
 .hidden {
-  visibility: none;
+  display: none;
 }
 

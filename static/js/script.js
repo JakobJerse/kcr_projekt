@@ -35,7 +35,6 @@ function openPreview(channelName, desc, imageUrl, buttonText = 'Glej v živo', f
     }
     else {
         startOverButton.classList.add('hidden');
-        startOverButton.classList.add('primary-button');
     }
     startOverButton.onclick = () => playChannel(channelName);
     playButton.onclick = () => playChannel(channelName);

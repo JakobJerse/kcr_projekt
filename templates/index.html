@@ -39,6 +39,7 @@
             <div class="row mb-5">
                 <h1 class="fw-bold" id="username"></h1>
             </div>
+            <!-- V zivo -->
             <div class="row my-5">
                 <h3 class="fw-bold text-white"> Glej v živo <i class="fa-solid fa-tv"></i></h3>
             </div>
@@ -48,67 +49,119 @@
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Image 1">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">TV Slovenija 1</span>
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">Slovenski pozdrav</h3>
+                                    <span class="channel-name fw-bold text-white">TV Slovenija 1</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card card-xl" onclick="openPreview('Pop TV', '24UR - Informativna oddaja ob 19:00.', '{{ url_for('static', filename='images/channel2.webp') }}', 'Glej v živo', true)">
+                    <div class="card card-xl" onclick="openPreview('TV Slovenija 2', 'Smučarski skoki (M) - Novoletna turneja, zadnja tekma - Garmisch - Partenkirchen.', '{{ url_for('static', filename='images/skoki.jpg') }}', 'Glej v živo', true)">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/skoki.jpg') }}" alt="Image 3">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">Smučarski skoki (M) - Novoletna turneja</h3>
+                                    <span class="channel-name fw-bold text-white">TV Slovenija 2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-xl" onclick="openPreview('POP TV', '24UR - Informativna oddaja ob 19:00.', '{{ url_for('static', filename='images/channel2.webp') }}', 'Glej v živo', true)">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/channel2.webp') }}" alt="Image 2">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">Pop TV</span>
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">24 UR</h3>
+                                    <span class="channel-name fw-bold text-white">POP TV</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card card-xl" onclick="openPreview('National Geographic', 'Lev - Kralj živali - dokumentarni film.', '{{ url_for('static', filename='images/channel3.jpg') }}', 'Glej v živo', true)">
+                    <div class="card card-xl" onclick="openPreview('Kanal A', 'MotoGP - dirka za veliko nagrado Berna.', '{{ url_for('static', filename='images/motogp.jpg') }}', 'Glej v živo', true)">
                         <div class="card-image">
-                            <img src="{{ url_for('static', filename='images/channel3.jpg') }}" alt="Image 3">
+                            <img src="{{ url_for('static', filename='images/motogp.jpg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">National Geographic</span>
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">MotoGP - Velika nagrada Berna</h3>
+                                    <span class="channel-name fw-bold text-white">POP TV</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-xl" onclick="openPreview('Planet TV', 'Moj dragi zmore - razvedrilna oddaja.', '{{ url_for('static', filename='images/mojdragi.jpg') }}', 'Glej v živo', true)">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/mojdragi.jpg') }}" alt="Image 2">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">Moj dragi zmore</h3>
+                                    <span class="channel-name fw-bold text-white">Planet TV</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--Priporocila -->
             <div class="row my-5">
-                <h3 class="fw-bold text-white"> Kaj vas zanima? <i class="fa-solid fa-lightbulb"></i></h3>
+                <h3 class="fw-bold text-white"> Izbor zate <i class="fa-solid fa-lightbulb"></i></h3>
             </div>
             <div class="row mb-5">
                 <div class="d-flex flex-row gap-5">
-                    <div class="card card-m" onclick="openPreview('Šport', '', '{{ url_for('static', filename='images/genre-documentary.jpeg') }}')">
+                    <div class="card card-m" onclick="openPreview('Sam doma', 'Sam doma - božična komedija - POP TV - film, 210min.', '{{ url_for('static', filename='images/sam-doma.jpeg') }}', 'Predvajaj')">
                         <div class="card-image">
-                            <img src="{{ url_for('static', filename='images/genre-documentary.jpeg') }}" alt="Image 1">
+                            <img src="{{ url_for('static', filename='images/sam-doma.jpeg') }}" alt="Image 1">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">Šport</span>
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">Sam doma</h3>
+                                    <span class="fw-bold text-white mt-1">POP TV</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Romantični filmi', '', '{{ url_for('static', filename='images/genre-romance.jpeg') }}')">
+                    <div class="card card-m" onclick="openPreview('Črni seznam', 'Črni seznam - kriminalistična nadaljevanka - Kanal A - 11 sezon.', '{{ url_for('static', filename='images/blacklist.jpg') }}', 'Predvajaj')">
                         <div class="card-image">
-                            <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 2">
+                            <img src="{{ url_for('static', filename='images/blacklist.jpg') }}" alt="Image 3">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">Romantični filmi</span>
+                                <h3 class="channel-name fw-bold text-white">Črni seznam</h3>
+                                <span class="fw-bold text-white mt-1">Kanal A</span>
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Grozljivke', '', '{{ url_for('static', filename='images/genre-horror.webp') }}')">
+                    <div class="card card-m" onclick="openPreview('Kriva pota', 'Kriva pota - drama - Netflix - 5 sezon.', '{{ url_for('static', filename='images/breaking-bad.jpg') }}', 'Predvajaj')">
                         <div class="card-image">
-                            <img src="{{ url_for('static', filename='images/genre-horror.webp') }}" alt="Image 3">
+                            <img src="{{ url_for('static', filename='images/breaking-bad.jpg') }}" alt="Image 3">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">Grozljivke</span>
+                                <h3 class="channel-name fw-bold text-white">Kriva pota</h3>
+                                <span class="fw-bold text-white mt-1">Netflix</span>
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Dokumentarci', '', '{{ url_for('static', filename='images/genre-romance.jpeg') }}')">
+                    <div class="card card-m" onclick="openPreview('Naša mala klinika', 'Naša mala klinika - humoristična nadaljevanka - Voyo - 7 sezon.', '{{ url_for('static', filename='images/nmk.jpg') }}', 'Predvajaj')">
                         <div class="card-image">
-                            <img src="{{ url_for('static', filename='images/genre-romance.jpeg') }}" alt="Image 3">
+                            <img src="{{ url_for('static', filename='images/nmk.jpg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
-                                <span class="channel-name fw-bold text-white">Dokumentarci</span>
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">Naša mala klinika</h3>
+                                    <span class="fw-bold text-white mt-1">Voyo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-m" onclick="openPreview('Pobeg iz zapora', 'Pobeg iz zapora - drama - Netflix - 6 sezon.', '{{ url_for('static', filename='images/prison-break.jpg') }}', 'Predvajaj')">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/prison-break.jpg') }}" alt="Image 3">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="channel-name fw-bold text-white">Pobeg iz zapora</h3>
+                                    <span class="fw-bold text-white mt-1">Netflix</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Nadljuj z ogledom -->
             <div class="row my-5">
                 <h3 class="fw-bold text-white"> Nadaljuj z ogledom <i class="fa-solid fa-forward"></i></h3>
             </div>
