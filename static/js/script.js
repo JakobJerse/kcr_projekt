@@ -63,21 +63,18 @@ function playChannel(channelName) {
 
 
 const socket = io();
-const tvContent = document.getElementById('tvContent'); // Optional: for debugging or displaying actions
 
 document.addEventListener("DOMContentLoaded", () => {
-    let focusIndex = 0; // Tracks the currently focused element
+    let focusIndex = 0;
     const sidebar = document.querySelector(".sidebar");
     const sidebarItems = document.querySelectorAll(".sidebar .menu-item");
     const profileButton = document.querySelector(".sidebar .profile");
-    const profileImage = profileButton.querySelector("img"); // Profile image inside the profile button
+    const profileImage = profileButton.querySelector("img");
 
-    // Define rows explicitly
     const rowSelectors = [".row1", ".row2", ".row3", ".row4"];
     const rows = rowSelectors.map(selector => document.querySelector(selector));
     const allCards = rows.flatMap(row => Array.from(row.querySelectorAll(".card")));
 
-    // Combine focusable elements: sidebar items + profile button + cards
     const focusables = Array.from(sidebarItems).concat([profileImage]).concat(allCards);
 
     function updateFocus() {
@@ -85,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.toggle("focused", index === focusIndex);
         });
 
-        // If the profile button is focused, apply 'focused' to the image tag inside it
         if (focusables[focusIndex] === profileImage) {
             profileImage.classList.add("focused");
         } else {
@@ -95,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const focusedElement = focusables[focusIndex];
         focusedElement.focus();
 
-        // Scroll the sidebar if the focused item is not fully visible
         if (focusIndex < sidebarItems.length) {
             const sidebarRect = sidebar.getBoundingClientRect();
             const itemRect = focusedElement.getBoundingClientRect();
@@ -109,19 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function moveFocus(direction) {
         if (focusIndex < sidebarItems.length + 1) {
-            // In sidebar (including profile button)
             if (direction === "down") {
-                focusIndex = Math.min(focusIndex + 1, sidebarItems.length); // Including profile button
+                focusIndex = Math.min(focusIndex + 1, sidebarItems.length);
             } else if (direction === "up") {
-                focusIndex = Math.max(0, focusIndex - 1); // Back to sidebar items
+                focusIndex = Math.max(0, focusIndex - 1);
             } else if (direction === "right") {
-                // Move to the first card in row1
                 if (allCards.length > 0) {
-                    focusIndex = sidebarItems.length + 1; // First card index (after profile)
+                    focusIndex = sidebarItems.length + 1;
                 }
             }
         } else {
-            // In card section
             const currentCard = focusables[focusIndex];
             const currentRowIndex = rows.findIndex(row => row.contains(currentCard));
             const currentRow = rows[currentRowIndex];
@@ -130,35 +122,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (direction === "left") {
                 if (currentCardIndex === 0) {
-                    // If focused on the first card of any row, jump back to sidebar
-                    focusIndex = 0; // Go to the first item of the sidebar (not profile button)
+                    focusIndex = 0;
                 } else {
-                    // Otherwise, navigate within the row or to the previous row's card
                     if (currentCardIndex > 0) {
-                        focusIndex = focusables.indexOf(cardsInRow[currentCardIndex - 1]); // Previous card
+                        focusIndex = focusables.indexOf(cardsInRow[currentCardIndex - 1]);
                     } else if (currentRowIndex > 0) {
                         const prevRowCards = rows[currentRowIndex - 1].querySelectorAll(".card");
                         if (prevRowCards.length) {
-                            focusIndex = focusables.indexOf(prevRowCards[prevRowCards.length - 1]); // Last card in the previous row
+                            focusIndex = focusables.indexOf(prevRowCards[prevRowCards.length - 1]);
                         }
                     }
                 }
             } else if (direction === "right") {
                 if (currentCardIndex < cardsInRow.length - 1) {
-                    focusIndex = focusables.indexOf(cardsInRow[currentCardIndex + 1]); // Next card
+                    focusIndex = focusables.indexOf(cardsInRow[currentCardIndex + 1]);
                 }
             } else if (direction === "up") {
                 if (currentRowIndex > 0) {
                     const prevRowCards = rows[currentRowIndex - 1].querySelectorAll(".card");
                     if (prevRowCards.length) {
-                        focusIndex = focusables.indexOf(prevRowCards[0]); // First card in the previous row
+                        focusIndex = focusables.indexOf(prevRowCards[0]);
                     }
                 }
             } else if (direction === "down") {
                 if (currentRowIndex < rows.length - 1) {
                     const nextRowCards = rows[currentRowIndex + 1].querySelectorAll(".card");
                     if (nextRowCards.length) {
-                        focusIndex = focusables.indexOf(nextRowCards[0]); // First card in the next row
+                        focusIndex = focusables.indexOf(nextRowCards[0]);
                     }
                 }
             }
@@ -184,24 +174,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Listen for commands from the remote via socket.io
     socket.on('command', (data) => {
         const action = data.action;
 
         if (action === 'up' || action === 'down' || action === 'left' || action === 'right') {
-            moveFocus(action); // Move focus based on the command
-            tvContent.textContent = `Moved ${action}`; // Optional: Show the action
+            moveFocus(action);
+            tvContent.textContent = `Moved ${action}`;
         } else if (action === 'ok') {
             const focusedElement = focusables[focusIndex];
             if (focusedElement) {
-                focusedElement.click(); // Simulate a click on the focused element
+                focusedElement.click();
             }
-            tvContent.textContent = `OK Pressed`; // Optional: Show the action
         } else if (action === 'play') {
+            alert("Got you SON of a GUN!");
             window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            alert("Got you SON of a GUN!"); // Redirect to a video
         }
     });
 
-    updateFocus(); // Initialize focus
+    updateFocus();
 });
