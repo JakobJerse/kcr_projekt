@@ -233,3 +233,8 @@ h1 {
   display: none;
 }
 
+.focused {
+  outline: 3px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  transition: outline 0.2s ease-in-out;
+}
