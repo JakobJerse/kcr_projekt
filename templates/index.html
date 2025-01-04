@@ -244,7 +244,7 @@
             </div>
             <div class="row mb-5 row4">
                 <div class="d-flex flex-row gap-5">
-                    <div class="card card-m" onclick="openPreview('Veliki Pokovci', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj', true, 'Humoristična nadaljevanka', 'HBO', '12 sezon', 'Johnny Galecki, Jim Parsons, Kaley Cuoco')">
+                    <div class="card card-m" onclick="openPreview('Veliki Pokovci', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '12 sezon', 'Johnny Galecki, Jim Parsons, Kaley Cuoco')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/bigbang.jpg') }}" alt="Image 1">
                             <div class="card-overlay p-4">
@@ -255,7 +255,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Kako sem spoznal tvojo mamo', '{{ url_for('static', filename='images/tvojamami.jpg') }}', 'Predvajaj', true, 'Humoristična nadaljevanka', 'Disney+', '9 sezon', 'Josh Radnor, Jason Segel, Cobie Smulders')">
+                    <div class="card card-m" onclick="openPreview('Kako sem spoznal tvojo mamo', '{{ url_for('static', filename='images/tvojamami.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'Disney+', '9 sezon', 'Josh Radnor, Jason Segel, Cobie Smulders')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/tvojamami.jpg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
@@ -266,7 +266,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Zodiac', '{{ url_for('static', filename='images/zodiac.jpeg') }}', 'Predvajaj', true, 'Shrljiv film', 'Netflix', '2 uri in 37 minut', 'Jake Gyllenhaal, Robert Downey Jr., Mark Ruffalo')">
+                    <div class="card card-m" onclick="openPreview('Zodiac', '{{ url_for('static', filename='images/zodiac.jpeg') }}', 'Predvajaj', false, 'Shrljiv film', 'Netflix', '2 uri in 37 minut', 'Jake Gyllenhaal, Robert Downey Jr., Mark Ruffalo')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/zodiac.jpeg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
@@ -277,7 +277,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Prijatelji', '{{ url_for('static', filename='images/friends.jpg') }}', 'Predvajaj', true, 'Humoristična nadaljevanka', 'HBO', '10 sezon', 'Jennifer Aniston, Courteney Cox, Lisa Kudrow')">
+                    <div class="card card-m" onclick="openPreview('Prijatelji', '{{ url_for('static', filename='images/friends.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '10 sezon', 'Jennifer Aniston, Courteney Cox, Lisa Kudrow')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/friends.jpg') }}" alt="Image 3">
                             <div class="card-overlay p-4">
@@ -288,7 +288,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Skrito v raju', '{{ url_for('static', filename='images/skrito-v-raju.jpg') }}', 'Predvajaj', true, 'Romantična drama', 'Voyo', '1 sezona', 'Matej Zemljič, Gaja Filač, Gaber K. Trseglav')">
+                    <div class="card card-m" onclick="openPreview('Skrito v raju', '{{ url_for('static', filename='images/skrito-v-raju.jpg') }}', 'Predvajaj', false, 'Romantična drama', 'Voyo', '1 sezona', 'Matej Zemljič, Gaja Filač, Gaber K. Trseglav')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/skrito-v-raju.jpg') }}" alt="Image 4">
                             <div class="card-overlay p-4">
@@ -299,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card card-m" onclick="openPreview('Snežak', '{{ url_for('static', filename='images/snowman.webp') }}', 'Predvajaj', true, 'Shrljiv film', 'Netflix', 'Film, 2 uri', 'Michael Fassbender, Rebecca Ferguson, Charlotte Gainsbourg')">
+                    <div class="card card-m" onclick="openPreview('Snežak', '{{ url_for('static', filename='images/snowman.webp') }}', 'Predvajaj', false, 'Shrljiv film', 'Netflix', 'Film, 2 uri', 'Michael Fassbender, Rebecca Ferguson, Charlotte Gainsbourg')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/snowman.webp') }}" alt="Image 4">
                             <div class="card-overlay p-4">
@@ -322,7 +322,7 @@
             <button class="close-btn" onclick="closePreview()">×</button>
     
             <!-- Title -->
-            <h2 id="previewTitle" class="text-white"></h2>
+            <h2 id="previewTitle" class="text-white mb-10"></h2>
     
             <!-- Image -->
             <div class="preview-image">
