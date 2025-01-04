@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (direction === "left") {
                 if (currentCardIndex === 0) {
                     // If focused on the first card of any row, jump back to sidebar
-                    focusIndex = sidebarItems.length; // Last item (profile button)
+                    focusIndex = 0; // Go to the first item of the sidebar (not profile button)
                 } else {
                     // Otherwise, navigate within the row or to the previous row's card
                     if (currentCardIndex > 0) {
@@ -183,4 +183,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateFocus(); // Initialize focus
 });
+
 
