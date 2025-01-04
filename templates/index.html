@@ -104,7 +104,7 @@
             </div>
             <!--Priporocila -->
             <div class="row my-5">
-                <h3 class="fw-bold text-white"> Izbor zate <i class="fa-solid fa-lightbulb"></i></h3>
+                <h3 class="fw-bold text-white"> Izbor zate <i class="fa-solid fa-hand-point-down"></i></h3>
             </div>
             <div class="row mb-5">
                 <div class="d-flex flex-row gap-5">
@@ -219,6 +219,69 @@
                                     <div class="progress mt-2">
                                         <div class="progress-bar" style="width: 90%;" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Moj izbor -->
+             <div class="row my-5">
+                <h3 class="fw-bold text-white"> Moj sezam za ogled <i class="fa-solid fa-list-check"></i></h3>
+            </div>
+            <div class="row mb-5">
+                <div class="d-flex flex-row gap-5">
+                    <div class="card card-m" onclick="openPreview('Veliki Pokovci', 'Veliki pokovci - humoristična nadaljevanka - HBO - 12 sezon.', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj')">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/bigbang.jpg') }}" alt="Image 1">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="fw-bold text-white">Veliki pokovci</h3>
+                                    <span class="fw-bold text-white mt-2">HBO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-m" onclick="openPreview('Kako sem spoznal tvojo mamo', 'Kako sem spoznal tvojo mamo - humoristična nadaljevanka - Disney+ - 9 sezon.', '{{ url_for('static', filename='images/tvojamami.jpg') }}', 'Predvjaj')">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/tvojamami.jpg') }}" alt="Image 2">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="fw-bold text-white">Kako sem spoznal tvojo mamo</h3>
+                                    <span class="fw-bold text-white mt-2">Disney+</span>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-m" onclick="openPreview('Zodiac', 'Zodiac - shrljiv film - Netflix - 2 uri in 37 minut', '{{ url_for('static', filename='images/zodiac.jpeg') }}', 'Predvjaj')">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/zodiac.jpeg') }}" alt="Image 2">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="fw-bold text-white">Zodiac</h3>
+                                    <span class="fw-bold text-white mt-2">Netflix</span>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-m" onclick="openPreview('Prijatelji', 'Prijatelji - humoristična nadaljevanka - HBO - 10 sezon.', '{{ url_for('static', filename='images/friends.jpg') }}', 'Predvajaj')">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/friends.jpg') }}" alt="Image 3">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="fw-bold text-white">Prijatelji</h3>
+                                    <span class="fw-bold text-white mt-2">HBO</span>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-m" onclick="openPreview('Skrito v raju', 'Skrito v raju - romantična drama - Voyo - 1 sezona.', '{{ url_for('static', filename='images/skrito-v-raju.jpg') }}', 'Predvajaj')">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='images/skrito-v-raju.jpg') }}" alt="Image 4">
+                            <div class="card-overlay p-4">
+                                <div class="card-content">
+                                    <h3 class="fw-bold text-white">Skrito v raju</h3>
+                                    <span class="fw-bold text-white mt-2">Voyo</span>
                                 </div>                        
                             </div>
                         </div>
