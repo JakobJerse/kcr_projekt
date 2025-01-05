@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recents Page</title>
+    <title>Movies Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     <script>
@@ -14,22 +14,26 @@
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="menu">
-            <a href="{{ url_for('index') }}" class="menu-item "><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
-            <a href="{{ url_for('recents') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
-            <a href="{{ url_for('favourites') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
-        </div>
-        <div class="profile">
-            <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
-        </div>
-    </div>
+    <div class="d-flex flex-row">
 
-    <!-- Main content of the page -->
-    <div class="content">
-        <h1>Favourites Page</h1>
-        <p>Welcome to the favourites page content!</p>
-        <!-- Add other content as needed -->
+        <!-- Sidebar -->
+        <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
+            <div class="menu">
+                <a href="{{ url_for('index') }}" class="menu-item "><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+                <a href="{{ url_for('movies') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+                <a href="{{ url_for('favourites') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+            </div>
+            <div class="profile">
+                <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content flex-fill p-5">
+            <h1>Favourites Page</h1>
+            <p>Welcome to the favourites page content!</p>
+            <!-- Add other content as needed -->
+        </div>
     </div>
 </body>
 

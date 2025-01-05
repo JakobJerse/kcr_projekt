@@ -8,7 +8,3 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
     transition: transform 0.3s ease;
 }
-
-.channel-name {
-    font-size: 1.5rem;
-}
