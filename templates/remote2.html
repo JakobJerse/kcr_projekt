@@ -197,19 +197,24 @@
             <button class="back" onclick="sendCommand('back')">↩</button>
         </div>
         <div class="button-row">
+            <button class="settings" onclick="sendCommand('settings')">⚙</button>
+            <button class="home" onclick="sendCommand('home')">🏠</button>
+            <button class="power" onclick="sendCommand('power')">⚡</button>
+        </div>
+        <div class="button-row">
             <button class="rewind" onclick="sendCommand('rewind')">⏪</button>
             <button class="play" onclick="sendCommand('play')">▶⏹</button>
             <button class="forward" onclick="sendCommand('forward')">⏩</button>
         </div>
         <div class="button-row">
+            <button class="long-button" onclick="sendCommand('vol_down')">Vol -</button>
+            <button class="mute" onclick="sendCommand('mute')">🔇</button>
+            <button class="long-button" onclick="sendCommand('vol_up')">Vol +</button>
+        </div>
+        <div class="button-row">
             <button class="netflix" onclick="sendCommand('netflix')"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
             <button class="hbo" onclick="sendCommand('hbo')"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
             <button class="disney" onclick="sendCommand('disney')"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
-        </div>
-        <div class="button-row">
-            <button class="mute" onclick="sendCommand('mute')">🔇</button>
-            <button class="long-button" onclick="sendCommand('vol_up')">Vol +</button>
-            <button class="long-button" onclick="sendCommand('vol_down')">Vol -</button>
         </div>
         <div class="numbers">
             <button onclick="sendCommand(1)">1</button>

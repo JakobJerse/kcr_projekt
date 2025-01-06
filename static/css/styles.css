@@ -26,13 +26,14 @@ h1, h2 {
   color: var(--color-text);
 }
 
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  height: 100%;
-  background-color: var(--color-background);
+h1 {
+  font-size: 4rem;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-background);
+}
 
 /* Menu Item Styling */
 .menu-item {
@@ -170,7 +171,6 @@ h1 {
   background-color: #0056b3; /* Darker shade on hover */
 }
 
-
 .main {
   width: 100%;
   height: auto;
@@ -214,6 +214,11 @@ h1 {
   box-sizing: border-box;
 }
 
+.channel-name {
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
 .primary-button {
   background-color: var(--color-primary) !important;
   margin-top: 1rem;
@@ -237,4 +242,28 @@ h1 {
   outline: 3px solid rgb(255, 255, 255);
   border-radius: 6px;
   transition: outline 0.2s ease-in-out;
+}
+
+
+/* Kategorije Table Styling */
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.category-table td {
+  border-bottom: 1px solid #444; /* Gray horizontal lines */
+  font-size: 1.5rem;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.category-table tr:last-child td {
+  border-bottom: none; /* Remove bottom border from last row */
+}
+
+.category-table td:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  opacity: 1;
 }
