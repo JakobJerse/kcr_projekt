@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Išči</title>
+    <!-- <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/search.css') }}"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/preview.css') }}">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+    <script
+        src="{{ url_for('static', filename='js/search.js') }}"
+        defer
+    ></script>
+    <script>
+      const indexUrl = "{{ url_for('index') }}";
+      const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
+    </script>
+  </head>
+
+  <body>
+      <div class="d-flex flex-row">
+        <!-- Sidebar -->
+        <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
+          <div class="d-flex flex-column align-items-center gap-4">
+              <a href="{{ url_for('index') }}" id="home_button" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+              <a href="{{ url_for('search') }}" id="search_button" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
+              <a href="{{ url_for('movies') }}" id="recents_button" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+              <a href="{{ url_for('favourites') }}" id="favourites_button" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+          </div>
+          <div class="profile mt-auto">
+              <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+          </div>
+      </div>
+
+    <!-- Content -->
+    <div class="content flex-fill p-5">
+      <!-- Main content of the page -->
+      <div class="background">
+          <h1>Iskanje Vsebin</h1>
+          <!-- <div id="tvContent"></div> -->
+        
+          <input type="text" id="searchInput" placeholder="Vnesi iskalni niz..." style="top: 100px; width: 40%; font-size: x-large;" readonly>
+
+          <table id="movieContainer" style="padding-top: 30px;">
+            <tr></tr> <!-- We will insert <td> dynamically in this row -->
+          </table>
+      
+        
+
+
+        <div id="keyboard">
+            <div>
+                <button id="key-0-0" class="key" onclick="addToSearch('1')">1</button>
+                <button id="key-0-1" class="key" onclick="addToSearch('2')">2</button>
+                <button id="key-0-2" class="key" onclick="addToSearch('3')">3</button>
+                <button id="key-0-3" class="key" onclick="addToSearch('4')">4</button>
+                <button id="key-0-4" class="key" onclick="addToSearch('5')">5</button>
+                <button id="key-0-5" class="key" onclick="addToSearch('6')">6</button>
+                <button id="key-0-6" class="key" onclick="addToSearch('7')">7</button>
+                <button id="key-0-7" class="key" onclick="addToSearch('8')">8</button>
+                <button id="key-0-8" class="key" onclick="addToSearch('9')">9</button>
+                <button id="key-0-9" class="key" onclick="addToSearch('0')">0</button>
+                <button id="key-0-10" class="key backspace" onclick="backspace()">&#8678;</button>
+            </div>
+            <div> 
+                <button id="key-1-0" class="key" onclick="addToSearch('Q')">Q</button>
+                <button id="key-1-1" class="key" onclick="addToSearch('W')">W</button>
+                <button id="key-1-2" class="key" onclick="addToSearch('E')">E</button>
+                <button id="key-1-3" class="key" onclick="addToSearch('R')">R</button>
+                <button id="key-1-4" class="key" onclick="addToSearch('T')">T</button>
+                <button id="key-1-5" class="key" onclick="addToSearch('Y')">Y</button>
+                <button id="key-1-6" class="key" onclick="addToSearch('U')">U</button>
+                <button id="key-1-7" class="key" onclick="addToSearch('I')">I</button>
+                <button id="key-1-8" class="key" onclick="addToSearch('O')">O</button>
+                <button id="key-1-9" class="key" onclick="addToSearch('P')">P</button>
+                <button id="key-1-10" class="key" onclick="addToSearch('Š')">Š</button>
+                <button id="key-1-11" class="key" onclick="addToSearch('Đ')">Đ</button>
+            </div>
+            <div>
+                <button id="key-2-0" class="key" onclick="addToSearch('A')">A</button>
+                <button id="key-2-1" class="key" onclick="addToSearch('S')">S</button>
+                <button id="key-2-2" class="key" onclick="addToSearch('D')">D</button>
+                <button id="key-2-3" class="key" onclick="addToSearch('F')">F</button>
+                <button id="key-2-4" class="key" onclick="addToSearch('G')">G</button>
+                <button id="key-2-5" class="key" onclick="addToSearch('H')">H</button>
+                <button id="key-2-6" class="key" onclick="addToSearch('J')">J</button>
+                <button id="key-2-7" class="key" onclick="addToSearch('K')">K</button>
+                <button id="key-2-8" class="key" onclick="addToSearch('L')">L</button>
+                <button id="key-2-9" class="key" onclick="addToSearch('Č')">Č</button>
+                <button id="key-2-10" class="key" onclick="addToSearch('Ć')">Ć</button>
+                <button id="key-2-11" class="key" onclick="addToSearch('Ž')">Ž</button>
+            </div>
+            <div>
+                <button id="key-3-0" class="key" onclick="addToSearch('Z')">Z</button>
+                <button id="key-3-1" class="key" onclick="addToSearch('X')">X</button>
+                <button id="key-3-2" class="key" onclick="addToSearch('C')">C</button>
+                <button id="key-3-3" class="key" onclick="addToSearch('V')">V</button>
+                <button id="key-3-4" class="key" onclick="addToSearch('B')">B</button>
+                <button id="key-3-5" class="key" onclick="addToSearch('N')">N</button>
+                <button id="key-3-6" class="key" onclick="addToSearch('M')">M</button>
+                <button id="key-3-7" class="key" onclick="addToSearch(',')">,</button>
+                <button id="key-3-8" class="key" onclick="addToSearch('.')">.</button>
+                <button id="key-3-9" class="key" onclick="addToSearch('!')">!</button>
+                <button id="key-3-10" class="key backspace" onclick="enter()">&#8629;</button>
+                
+            </div>
+            <div>
+                <button id="key-4" class="key space" onclick="addToSearch(' ')">Space</button>
+            </div>        
+        </div>
+        
+
+
+      </div>
+      
+    </div>
+  </body>
+
+
+ <!-- Modal for Preview -->
+ <div id="previewModal" class="preview-modal">
+    <div class="preview-content">
+        <!-- Round Close Button -->
+        <button id="zatvoribrate" class="close-btn" onclick="closePreview()">×</button>
+
+        <!-- Title -->
+        <h2 id="previewTitle" class="text-white mb-10"></h2>
+
+        <!-- Image -->
+        <div class="preview-image">
+            <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Preview Image">
+        </div>
+
+        <div id="previewDescription" class="preview-details text-white">
+            <p><strong>Žanr:</strong> <span id="previewGenre"></span></p>
+            <p><strong>Info:</strong> <span id="previewInfo"></span></p>
+            <p><strong>Platforma za ogled:</strong> <span id="previewStreamingPlatform"></span></p>
+            <p><strong>Igralska zasedba:</strong> <span id="previewCast"></span></p>
+        </div>
+
+        <!-- Play Button -->
+        <div class="buttons-container">
+            <button id="gumbajga" class="start-over-btn primary-button"></button>
+            <button id="gumbajgafokus" class="play-btn primary-button"> Glej v živo</button>
+        </div>
+    </div>
+</div>
+
+
+</html>

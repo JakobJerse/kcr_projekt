@@ -98,7 +98,7 @@ body {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: #FFF;
+    background: #aaaaaa;
     border-radius: 50%;
     top: -6px;
     transform: translateX(-50%);
@@ -173,3 +173,16 @@ body {
     background: #007bff;
     border-radius: 5px;
 }
+
+.focused {
+    outline: 3px solid rgb(255, 255, 255);
+    border-radius: 6px;
+    transition: outline 0.2s ease-in-out;
+}
+
+.progress-handle.focused {
+    outline: 3px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    transition: outline 0.2s ease-in-out;
+}
+  

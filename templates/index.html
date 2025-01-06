@@ -28,11 +28,11 @@
             <div class="d-flex flex-column align-items-center gap-4">
                 <a href="{{ url_for('index') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
                 <a href="{{ url_for('search') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
-                <a href="{{ url_for('recents') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+                <a href="{{ url_for('movies') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
                 <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
             </div>
             <div class="profile mt-auto">
-                <a href={{ url_for('landing') }}><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+                <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
             </div>
         </div>
 

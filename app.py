@@ -12,9 +12,9 @@ def landing():
 def search():
     return render_template('search.html')
 
-@app.route('/recents')
-def recents():
-    return render_template('recents.html')
+@app.route('/movies')
+def movies():
+    return render_template('movies.html')
 
 @app.route('/favourites')
 def favourites():
@@ -41,4 +41,4 @@ def handle_remote_command(data):
     print("Received command: " + str(data))
 
 if __name__ == '__main__':
-    socketio.run(app, host="0.0.0.0", port=5000)
+    socketio.run(app, host="0.0.0.0", port=8080)

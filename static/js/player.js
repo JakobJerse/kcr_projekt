@@ -1,3 +1,5 @@
+const socket = io();
+
 let playing = false;
 let width = 0;
 let interval;
@@ -17,8 +19,9 @@ let controlsVisible = true;
 let hideControlsTimeout;
 let sidebarVisible = false;
 let hideSidebarTimeout;
+let focusControlIndex = 1;
 
-const cooldown = 50000;
+const cooldown = 5000;
 
 const maxTime = 5 * 60; 
 const totalSeconds = 5 * 60; // 5 minutes in seconds
@@ -105,37 +108,40 @@ playPauseBtn.addEventListener('click', togglePlayPause);
 function showControls() {
     controls.classList.remove('hidden');
     resetHideControlsTimeout();
+    controlsVisible = true;
 }
 
 function hideControls() {
     controls.classList.add('hidden');
+    clearTimeout(hideControlsTimeout);
+    controlsVisible = false;
+    focusControlIndex = 1;
 }
 
-function toggleControls() {
-    if (controlsVisible) {
-        hideControls();
-        controlsVisible = false;
-    } else {
-        showControls();
-        controlsVisible = true;
-    }
-}
+// function toggleControls() {
+//     if (controlsVisible) {
+//         hideControls();
+//         controlsVisible = false;
+//     } else {
+//         showControls();
+//         controlsVisible = true;
+//     }
+// }
 
-document.addEventListener('keydown', (e) => {
-    showControls();
-    controlsVisible = true;
-});
+// document.addEventListener('keydown', (e) => {
+//     showControls();
+//     controlsVisible = true;
+// });
 
-document.addEventListener('mousemove', () => {
-    showControls();
-    controlsVisible = true;
-});
+// document.addEventListener('mousemove', () => {
+//     showControls();
+//     controlsVisible = true;
+// });
 
 function resetHideControlsTimeout() {
     clearTimeout(hideControlsTimeout);
     hideControlsTimeout = setTimeout(() => {
         hideControls();
-        controlsVisible = false;
     }, cooldown);
 }
 
@@ -150,6 +156,18 @@ function toggleSidebar() {
     }
 }
 
+function openSidebar() {
+    sidebar.classList.add('visible');
+    sidebarVisible = true;
+    resetHideSidebarTimeout();
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('visible');
+    sidebarVisible = false;
+    clearTimeout(hideSidebarTimeout);
+}
+
 function resetHideSidebarTimeout() {
     clearTimeout(hideSidebarTimeout);
     hideSidebarTimeout = setTimeout(() => {
@@ -157,12 +175,6 @@ function resetHideSidebarTimeout() {
         sidebarVisible = false;
     }, cooldown);
 }
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 's') { // Change 's' to any key you want to use to toggle the sidebar
-        toggleSidebar();
-    }
-});
 
 function updateTimeDisplay(value) {
     if (value < 0) {
@@ -249,16 +261,146 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateSelection();
 
-    document.addEventListener('keydown', function(e) {
+    function changeChannel(action) {
         const sidebar = document.querySelector('.sidebar');
         if (sidebar && sidebar.classList.contains('visible') && channelItems.length > 0) {
-            if (e.key === 'ArrowUp') {
+            if (action === 'up') {
                 selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : channelItems.length - 1;
                 updateSelection();
-            } else if (e.key === 'ArrowDown') {
+            } else if (action === 'down') {
                 selectedIndex = (selectedIndex < channelItems.length - 1) ? selectedIndex + 1 : 0;
                 updateSelection();
             }
         }
+    }
+
+    // -------------------------
+    // --- Remote for Player ---
+    // -------------------------
+
+    const sidebarItems = document.querySelectorAll(".sidebar .channel-item");
+    const progressHandle = document.querySelector(".progress-handle");
+    const controls = document.querySelectorAll(".control-buttons button");
+    const controlArray = Array.from(controls);
+    let progressHandleFocused = false;
+
+    function remoteAction(action) {
+        if ((action === "up" || action === "down") && !controlsVisible) {
+            openSidebar();
+        }
+        showControls();
+        switch (action) {
+            case "up":
+                if (sidebarVisible) {
+                    changeChannel("up");
+                } else {
+                    if (progressHandleFocused) {
+                        progressHandleFocused = false;
+                        openSidebar();
+                    } else {
+                        progressHandleFocused = true;
+                    }
+                } 
+                break;
+            case "down":
+                if (sidebarVisible) {
+                    changeChannel("down");
+                } else {
+                    if (progressHandleFocused) {
+                        progressHandleFocused = false;
+                        focusControlIndex = 1;
+                    } else {
+                        hideControls();
+                    }
+                } 
+                break;
+            case "left":
+                if (focusControlIndex === 0) {
+                    openSidebar();
+                } else if (progressHandleFocused) {
+                    width = Math.max(0, width - 5);
+                    updateProgress(width);
+                } else {
+                    focusControlIndex -= 1;
+                }
+                break;
+            case "right":
+                if (sidebarVisible) {
+                    focusControlIndex = 1; // deafult is play/pause button
+                    closeSidebar();
+                } else if (progressHandleFocused) {
+                    width = Math.min(100, width + 5);
+                    updateProgress(width);
+                } else {
+                    focusControlIndex += 1;
+                    if (focusControlIndex >= controlArray.length) {
+                        focusControlIndex = 0;
+                    }
+                }
+                break;
+            case "ok":
+                if (sidebarVisible) {
+                    closeSidebar();
+                }
+                else if (progressHandleFocused) {
+
+                }
+                else {
+                    const focusedElement = controlArray[focusControlIndex];
+                    if (focusedElement) {
+                        focusedElement.click();
+                    }
+                }
+                break;    
+        }
+
+        updateFocus();
+    }
+
+    function updateFocus() {
+        if (sidebarVisible || progressHandleFocused) {
+            controlArray.forEach((control, index) => {
+                control.classList.remove("focused");
+            });
+        } else {
+            controlArray.forEach((item, index) => {
+                item.classList.toggle("focused", index === focusControlIndex);
+            });
+        }
+        if (progressHandleFocused) {
+            progressHandle.classList.add("focused");
+            timeDisplay.style.opacity = 1;
+        } else {
+            progressHandle.classList.remove("focused");
+            timeDisplay.style.opacity = 0;
+        }
+    }
+
+    document.addEventListener("keydown", (e) => {
+        switch (e.key) {
+            case "ArrowUp":
+                remoteAction("up");
+                break;
+            case "ArrowDown":
+                remoteAction("down");
+                break;
+            case "ArrowLeft":
+                remoteAction("left");
+                break;
+            case "ArrowRight":
+                remoteAction("right");
+                break;
+            case "Enter":
+                remoteAction("ok");
+                break;
+        }
     });
+
+    socket.on('command', (data) => {
+        const action = data.action;
+
+        remoteAction(action);
+    });
+
+    updateFocus();
 });

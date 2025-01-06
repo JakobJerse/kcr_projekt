@@ -190,8 +190,10 @@ toolbar_buttons =  [document.getElementById('home_button'),
                 document.getElementById('search_button'),
                 document.getElementById('recents_button'),
                 document.getElementById('favourites_button'),
-                document.getElementById('profile_button')]
+                document.getElementById('profileImage')]
 
+
+console.log(toolbar_buttons)
 // toolbar_shortcuts = []
 
 

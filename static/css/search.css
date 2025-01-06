@@ -15,6 +15,11 @@
     z-index: 100; /* Make sure it floats above other elements */
   }
 
+.background {
+  background-color: var(--color-sidebar);
+}
+
+
   .key {
     width: 7.25%;
     padding: 10px;

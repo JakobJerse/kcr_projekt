@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-xl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-m.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/card-progress.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/preview.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+      const indexUrl = "{{ url_for('index') }}";
+      const staticImagesUrl = "{{ url_for('static', filename='images/') }}";
+    </script>
+  </head>
+
+  <body>
+    <div class="d-flex flex-row">
+
+      <!-- Sidebar -->
+      <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
+        <div class="d-flex flex-column align-items-center gap-4">
+          <a href="{{ url_for('index') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+          <a href="{{ url_for('movies') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+          <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+        </div>
+        <div class="profile mt-auto">
+          <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content flex-fill overflow-hidden p-5 mb-5">
+        <!-- Main Title -->
+        <div class="row">
+          <h1 class="fw-bold">Filmi</h1>
+        </div>
+        <!-- Izbor zate -->
+        <div class="row py-4 align-items-center">
+          <div class="d-flex align-items-center gap-3 text-white">
+            <i class="fa-solid fa-tv"></i>
+            <h3 class="fw-bold mb-0">Izbor zate</h3>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="d-flex flex-row gap-5">
+            <div class="card card-xl" onclick="openPreview('Izvor', '{{ url_for('static', filename='images/inception.jpg') }}', 'Predvajaj', true, 'Znanstvena fantastika', 'Netflix', 'Film', 'Leonardo DiCaprio, Joseph Gordon-Levitt')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/inception.jpg') }}" alt="Izvor">
+                <div class="card-overlay p-4">
+                  <div class="card-content">
+                    <h3 class="fw-bold text-white">Izvor</h3>
+                    <span class="channel-name text-white fw-bold">Netflix</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-xl" onclick="openPreview('Vitez teme', '{{ url_for('static', filename='images/dark-knight.jpg') }}', 'Predvajaj', true, 'Akcija', 'HBO Max', 'Film', 'Christian Bale, Heath Ledger')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/dark-knight.jpg') }}" alt="Vitez teme">
+                <div class="card-overlay p-4">
+                  <div class="card-content">
+                    <h3 class="fw-bold text-white">Vitez teme</h3>
+                    <span class="channel-name text-white fw-bold">HBO Max</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-xl" onclick="openPreview('Medzvezdje', '{{ url_for('static', filename='images/interstellar.jpg') }}', 'Predvajaj', true, 'Znanstvena fantastika', 'Cinestar Movies', 'Film', 'Matthew McConaughey, Anne Hathaway')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/interstellar.avif') }}" alt="Medzvezdje">
+                <div class="card-overlay p-4">
+                  <div class="card-content">
+                    <h3 class="fw-bold text-white">Medzvezdje</h3>
+                    <span class="channel-name text-white fw-bold">Cinestar Movies</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-xl" onclick="openPreview('Parazit', '{{ url_for('static', filename='images/parasite.jpg') }}', 'Predvajaj', true, 'Triler', 'TV Slovenija 1', 'Film', 'Song Kang-ho, Lee Sun-kyun')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/parasite.jpg') }}" alt="Parazit">
+                <div class="card-overlay p-4">
+                  <div class="card-content">
+                    <h3 class="fw-bold text-white">Parazit</h3>
+                    <span class="channel-name text-white fw-bold">TV Slovenija 1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Trenutno najbolj gledano -->
+        <div class="row py-4 align-items-center">
+          <div class="d-flex align-items-center gap-3 text-white">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <h3 class="fw-bold mb-0">Trenutno najbolj gledano</h3>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="d-flex flex-row gap-5">
+            <div class="card card-m" onclick="openPreview('Boter', '{{ url_for('static', filename='images/godfather.jpg') }}', 'Predvajaj', false, 'Drama', 'Kanal A', 'Film', 'Marlon Brando, Al Pacino')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/godfather.jpg') }}" alt="Boter">
+                <div class="card-overlay p-4">
+                  <h3 class="fw-bold text-white">Boter</h3>
+                  <span class="channel-name text-white fw-bold mt-1">Kanal A</span>
+                </div>
+              </div>
+            </div>
+            <div class="card card-m" onclick="openPreview('Maščevalci: Zaključek', '{{ url_for('static', filename='images/endgame.jpg') }}', 'Predvajaj', false, 'Akcija', 'Disney+', 'Film', 'Robert Downey Jr., Chris Evans')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/endgame.jpg') }}" alt="Maščevalci: Zaključek">
+                <div class="card-overlay p-4">
+                  <h3 class="fw-bold text-white">Maščevalci: Zaključek</h3>
+                  <span class="channel-name text-white fw-bold mt-1">Disney+</span>
+                </div>
+              </div>
+            </div>
+            <div class="card card-m" onclick="openPreview('Rešitev v Shawshanku', '{{ url_for('static', filename='images/shawshank.jpg') }}', 'Predvajaj', false, 'Drama', 'Kanal A', 'Film', 'Tim Robbins, Morgan Freeman')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/shawshank.jpg') }}" alt="Rešitev v Shawshanku">
+                <div class="card-overlay p-4">
+                  <h3 class="fw-bold text-white">Rešitev v Shawshanku</h3>
+                  <span class="channel-name text-white fw-bold mt-1">Kanal A</span>
+                </div>
+              </div>
+            </div>
+            <div class="card card-m" onclick="openPreview('Forrest Gump', '{{ url_for('static', filename='images/forrest-gump.jpg') }}', 'Predvajaj', false, 'Drama', 'Voyo', 'Film', 'Tom Hanks, Robin Wright')">
+              <div class="card-image">
+                <img src="{{ url_for('static', filename='images/forrest-gump.webp') }}" alt="Forrest Gump">
+                <div class="card-overlay p-4">
+                  <h3 class="fw-bold text-white">Forrest Gump</h3>
+                  <span class="channel-name text-white fw-bold mt-1">Voyo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Kategorije -->
+        <div class="row py-4 align-items-center">
+          <div class="d-flex align-items-center gap-3 text-white">
+            <i class="fa-solid fa-list"></i>
+            <h3 class="fw-bold mb-0">Kategorije</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="d-flex flex-row">
+            <table class="category-table text-white text-start">
+              <tbody>
+                <tr>
+                  <td class="p-4">Akcija</td>
+                  <td class="p-4">Komedija</td>
+                  <td class="p-4">Drama</td>
+                </tr>
+                <tr>
+                  <td class="p-4">Znanstvena fantastika</td>
+                  <td class="p-4">Grozljivka</td>
+                  <td class="p-4">Romantika</td>
+                </tr>
+                <tr>
+                  <td class="p-4">Animirani</td>
+                  <td class="p-4">Dokumentarni</td>
+                  <td class="p-4">Triler</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for Preview -->
+    <div id="previewModal" class="preview-modal">
+      <div class="preview-content">
+        <!-- Round Close Button -->
+        <button class="close-btn" onclick="closePreview()">×</button>
+        <!-- Title -->
+        <h2 id="previewTitle" class="text-white mb-10"></h2>
+        <!-- Image -->
+        <div class="preview-image">
+          <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Preview Image">
+        </div>
+        <div id="previewDescription" class="preview-details text-white">
+          <p><strong>Žanr:</strong> <span id="previewGenre"></span></p>
+          <p><strong>Info:</strong> <span id="previewInfo"></span></p>
+          <p><strong>Platforma za ogled:</strong> <span id="previewStreamingPlatform"></span></p>
+          <p><strong>Igralska zasedba:</strong> <span id="previewCast"></span></p>
+        </div>
+        <!-- Play Button -->
+        <div class="buttons-container">
+          <button class="start-over-btn primary-button"></button>
+          <button class="play-btn primary-button"> Glej v živo</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
