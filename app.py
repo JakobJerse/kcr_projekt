@@ -8,6 +8,10 @@ socketio = SocketIO(app)
 def landing():
     return render_template('landing.html')
 
+@app.route('/search')
+def search():
+    return render_template('search.html')
+
 @app.route('/recents')
 def recents():
     return render_template('recents.html')

@@ -27,6 +27,7 @@
         <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
             <div class="d-flex flex-column align-items-center gap-4">
                 <a href="{{ url_for('index') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+                <a href="{{ url_for('search') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
                 <a href="{{ url_for('recents') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
                 <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
             </div>
