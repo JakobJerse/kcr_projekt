@@ -16,6 +16,10 @@ def search():
 def movies():
     return render_template('movies.html')
 
+@app.route('/tv-shows')
+def shows():
+    return render_template('tv-shows.html')
+
 @app.route('/favourites')
 def favourites():
     return render_template('favourites.html')
@@ -32,7 +36,6 @@ def index():
 def player():
     channel_name = request.args.get('channel', 'Default Channel')  # Default fallback
     return render_template('player.html', channel=channel_name)
-
 
 @socketio.on('remote_command')
 def handle_remote_command(data):
