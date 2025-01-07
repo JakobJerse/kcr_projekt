@@ -10,7 +10,7 @@ window.onload = function () {
     if (profileImage) {
         document.getElementById('profileImage').src = staticImagesUrl + profileImage;
     }
-    if (username) {
+    if (username && document.getElementById('username')) {
         document.getElementById('username').textContent = username;
     }
 };
@@ -67,15 +67,25 @@ const socket = io();
 document.addEventListener("DOMContentLoaded", () => {
     let focusIndex = 0;
     const sidebar = document.querySelector(".sidebar");
-    const sidebarItems = document.querySelectorAll(".sidebar .menu-item");
-    const profileButton = document.querySelector(".sidebar .profile");
-    const profileImage = profileButton.querySelector("img");
+    const sidebarItems = [document.getElementById('home_button'),
+        document.getElementById('search_button'),
+        document.getElementById('movies_button'),
+        document.getElementById('shows_button'),
+        document.getElementById('favourites_button'),
+        document.getElementById('hbo_button'),
+        document.getElementById('netflix_button'),
+        document.getElementById('disney_button')]
+    const profileImage = document.getElementById('profileImage');
 
     const rowSelectors = [".row1", ".row2", ".row3", ".row4"];
-    const rows = rowSelectors.map(selector => document.querySelector(selector));
+    let rows = rowSelectors.map(selector => document.querySelector(selector));
+    rows = rows.filter(row => row !== null);
     const allCards = rows.flatMap(row => Array.from(row.querySelectorAll(".card")));
 
     const focusables = Array.from(sidebarItems).concat([profileImage]).concat(allCards);
+
+    const active = document.querySelector(".active");
+    focusIndex = focusables.indexOf(active);
 
     function updateFocus() {
         focusables.forEach((item, index) => {
@@ -184,8 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (action === 'up' || action === 'down' || action === 'left' || action === 'right') {
             moveFocus(action);
-            console.log("h1111he")
-            tvContent.textContent = `Moved ${action}`;
         } else if (action === 'ok') {
             const focusedElement = focusables[focusIndex];
             if (focusedElement) {
@@ -195,9 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Got you SON of a GUN!");
             window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         } else if (action === 'search') {
-            // alert("search");
-
-
             window.location.href = "/search"
         }
 

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card-progress.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/preview.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script>
         const indexUrl = "{{ url_for('index') }}";
@@ -26,17 +27,17 @@
         <!-- Sidebar -->
         <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
             <div class="d-flex flex-column align-items-center gap-4">
-                <a href="{{ url_for('index') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
-                <a href="{{ url_for('search') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
-                <a href="{{ url_for('movies') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/movies.svg') }}" alt=""></a>
-                <a href="{{ url_for('shows') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/tv-shows.svg') }}" alt=""></a>
-                <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
-                <a href="https://www.max.com" class="menu-item"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt=""></a>
-                <a href="https://www.netflix.com" class="menu-item"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt=""></a>
-                <a href="https://www.disneyplus.com" class="menu-item"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt=""></a>
+                <a href="{{ url_for('index') }}" id="home_button" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+                <a href="{{ url_for('search') }}" id="search_button" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
+                <a href="{{ url_for('movies') }}" id="movies_button" class="menu-item"><img src="{{ url_for('static', filename='icons/movies.svg') }}" alt=""></a>
+                <a href="{{ url_for('shows') }}" id="shows_button" class="menu-item"><img src="{{ url_for('static', filename='icons/tv-shows.svg') }}" alt=""></a>
+                <a href="{{ url_for('favourites') }}" id="favourites_button" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+                <a href="https://www.max.com" id="hbo_button" class="menu-item"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt=""></a>
+                <a href="https://www.netflix.com" id="netflix_button" class="menu-item"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt=""></a>
+                <a href="https://www.disneyplus.com" id="disney_button" class="menu-item"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt=""></a>
             </div>
             <div class="profile mt-auto">
-                <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+                <a id="profile_button" href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
             </div>
         </div>
 
@@ -55,9 +56,8 @@
                   <h3 class="fw-bold mb-0">Glej v živo</h3>
                 </div>
             </div>
-
             <div class="row mb-5">
-                <div class="d-flex flex-row gap-5">
+                <div class="row1 d-flex flex-row gap-5">
                     <div class="card card-xl" onclick="openPreview('TV Slovenija 1', '{{ url_for('static', filename='images/channel1.webp') }}', 'Glej v živo', true, 'Razvedrilna oddaja', 'TV Slovenija 1', 'Slovenski pozdrav', '/')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Image 1">
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="d-flex flex-row gap-5">
+                <div class="row2 d-flex flex-row gap-5">
                     <div class="card card-m" onclick="openPreview('Sam doma', '{{ url_for('static', filename='images/sam-doma.jpeg') }}', 'Predvajaj', false, 'Božična komedija', 'POP TV', 'Film, 210 min', 'Macaulay Culkin, Joe Pesci, Daniel Stern')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/sam-doma.jpeg') }}" alt="Image 1">
@@ -198,7 +198,7 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="d-flex flex-row gap-5">
+                <div class="row3 d-flex flex-row gap-5">
                     <div class="card card-m" onclick="openPreview('Igra Prestolov: S1 E9', '{{ url_for('static', filename='images/progress1.webp') }}', 'Nadaljuj z ogledom', true, 'Drama', 'HBO', '8 sezon, S1 E9.', 'Emilia Clarke, Kit Harington, Peter Dinklage, Lena Headey')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/progress1.webp') }}" alt="Image 1">
@@ -267,7 +267,7 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="d-flex flex-row gap-5">
+                <div class="row4 d-flex flex-row gap-5">
                     <div class="card card-m" onclick="openPreview('Veliki Pokovci', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '12 sezon', 'Johnny Galecki, Jim Parsons, Kaley Cuoco')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/bigbang.jpg') }}" alt="Image 1">

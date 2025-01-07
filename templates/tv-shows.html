@@ -26,19 +26,19 @@
       <!-- Sidebar -->
       <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
         <div class="d-flex flex-column align-items-center gap-4">
-            <a href="{{ url_for('index') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
-            <a href="{{ url_for('search') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
-            <a href="{{ url_for('movies') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/movies.svg') }}" alt=""></a>
-            <a href="{{ url_for('shows') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/tv-shows.svg') }}" alt=""></a>
-            <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
-            <a href="https://www.max.com" class="menu-item"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt=""></a>
-            <a href="https://www.netflix.com" class="menu-item"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt=""></a>
-            <a href="https://www.disneyplus.com" class="menu-item"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt=""></a>
+            <a href="{{ url_for('index') }}" id="home_button" class="menu-item"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
+            <a href="{{ url_for('search') }}" id="search_button" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
+            <a href="{{ url_for('movies') }}" id="movies_button" class="menu-item"><img src="{{ url_for('static', filename='icons/movies.svg') }}" alt=""></a>
+            <a href="{{ url_for('shows') }}" id="shows_button" class="menu-item active"><img src="{{ url_for('static', filename='icons/tv-shows.svg') }}" alt=""></a>
+            <a href="{{ url_for('favourites') }}" id="favourites_button" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+            <a href="https://www.max.com" id="hbo_button" class="menu-item"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt=""></a>
+            <a href="https://www.netflix.com" id="netflix_button" class="menu-item"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt=""></a>
+            <a href="https://www.disneyplus.com" id="disney_button" class="menu-item"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt=""></a>
         </div>
         <div class="profile mt-auto">
-            <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+            <a id="profile_button" href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
         </div>
-      </div>
+    </div>
 
       <!-- Content -->
       <div class="content flex-fill overflow-hidden p-5 mb-5">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="row mb-5">
-          <div class="d-flex flex-row gap-5">
+          <div class="row1 d-flex flex-row gap-5">
             <div class="card card-xl" onclick="openPreview('Črni seznam', '{{ url_for('static', filename='images/blacklist.jpg') }}', 'Predvajaj', false, 'Kriminalistična nadaljevanka', 'Kanal A', '11 sezon', 'James Spader, Megan Boone')">
               <div class="card-image">
                   <img src="{{ url_for('static', filename='images/blacklist.jpg') }}" alt="Image 2">
@@ -106,7 +106,7 @@
           </div>
         </div>
         <div class="row mb-5">
-          <div class="d-flex flex-row gap-5">
+          <div class="row2 d-flex flex-row gap-5">
             <div class="card card-m" onclick="openPreview('Veliki Pokovci', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '12 sezon', 'Johnny Galecki, Jim Parsons, Kaley Cuoco')">
               <div class="card-image">
                   <img src="{{ url_for('static', filename='images/bigbang.jpg') }}" alt="Image 1">
@@ -161,7 +161,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="d-flex flex-row">
+          <div class="row3 d-flex flex-row">
             <table class="category-table text-white text-start">
               <tbody>
                 <tr>

@@ -188,13 +188,12 @@ key_column = 0;
 
 toolbar_buttons =  [document.getElementById('home_button'),
                 document.getElementById('search_button'),
-                document.getElementById('recents_button'),
+                document.getElementById('movies_button'),
                 document.getElementById('favourites_button'),
-                document.getElementById('profileImage')]
-
-
-console.log(toolbar_buttons)
-// toolbar_shortcuts = []
+                document.getElementById('hbo_button'),
+                document.getElementById('netflix_button'),
+                document.getElementById('disney_button'),
+                document.getElementById('profile_button')]
 
 
 toolbar_buttons[current_row].classList.add('focused');
