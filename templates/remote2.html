@@ -185,50 +185,50 @@
 <body>
     <div class="remote">
         <div class="circular-controls">
-            <button class="up" onclick="sendCommand('up')">▲</button>
-            <button class="down" onclick="sendCommand('down')">▼</button>
-            <button class="left" onclick="sendCommand('left')">◀</button>
-            <button class="right" onclick="sendCommand('right')">▶</button>
-            <button class="center" onclick="sendCommand('ok')">OK</button>
+            <button class="up" onmousedown="mouseDownCommand('up')" onmouseup="mouseUpCommand('up')">▲</button>
+            <button class="down" onmousedown="mouseDownCommand('down')" onmouseup="mouseUpCommand('down')">▼</button>
+            <button class="left" onmousedown="mouseDownCommand('left')" onmouseup="mouseUpCommand('left')">◀</button>
+            <button class="right" onmousedown="mouseDownCommand('right')" onmouseup="mouseUpCommand('right')">▶</button>
+            <button class="center" onmousedown="mouseDownCommand('ok')" onmouseup="mouseUpCommand('ok')">OK</button>
         </div>
         <div class="button-row">
-            <button class="voice" onclick="sendCommand('voice')">🎤</button>
-            <button class="search" onclick="sendCommand('search')">🔍</button>
-            <button class="back" onclick="sendCommand('back')">↩</button>
+            <button class="voice" onmousedown="mouseDownCommand('voice')" onmouseup="mouseUpCommand('voice')">🎤</button>
+            <button class="search" onmousedown="mouseDownCommand('search')" onmouseup="mouseUpCommand('search')">🔍</button>
+            <button class="back" onmousedown="mouseDownCommand('back')" onmouseup="mouseUpCommand('back')">↩</button>
         </div>
         <div class="button-row">
-            <button class="settings" onclick="sendCommand('settings')">⚙</button>
-            <button class="home" onclick="sendCommand('home')">🏠</button>
-            <button class="power" onclick="sendCommand('power')">⚡</button>
+            <button class="settings" onmousedown="mouseDownCommand('settings')" onmouseup="mouseUpCommand('settings')">⚙</button>
+            <button class="home" onmousedown="mouseDownCommand('home')" onmouseup="mouseUpCommand('home')">🏠</button>
+            <button class="power" onmousedown="mouseDownCommand('power')" onmouseup="mouseUpCommand('power')">⚡</button>
         </div>
         <div class="button-row">
-            <button class="rewind" onclick="sendCommand('rewind')">⏪</button>
-            <button class="play" onclick="sendCommand('play')">▶⏹</button>
-            <button class="forward" onclick="sendCommand('forward')">⏩</button>
+            <button class="rewind" onmousedown="mouseDownCommand('rewind')" onmouseup="mouseUpCommand('rewind')">⏪</button>
+            <button class="play" onmousedown="mouseDownCommand('play')" onmouseup="mouseUpCommand('play')">▶⏹</button>
+            <button class="forward" onmousedown="mouseDownCommand('forward')" onmouseup="mouseUpCommand('forward')">⏩</button>
         </div>
         <div class="button-row">
-            <button class="long-button" onclick="sendCommand('vol_down')">Vol -</button>
-            <button class="mute" onclick="sendCommand('mute')">🔇</button>
-            <button class="long-button" onclick="sendCommand('vol_up')">Vol +</button>
+            <button class="long-button" onmousedown="mouseDownCommand('vol_down')" onmouseup="mouseUpCommand('vol_down')">Vol -</button>
+            <button class="mute" onmousedown="mouseDownCommand('mute')" onmouseup="mouseUpCommand('mute')">🔇</button>
+            <button class="long-button" onmousedown="mouseDownCommand('vol_up')" onmouseup="mouseUpCommand('vol_up')">Vol +</button>
         </div>
         <div class="button-row">
-            <button class="netflix" onclick="sendCommand('netflix')"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
-            <button class="hbo" onclick="sendCommand('hbo')"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
-            <button class="disney" onclick="sendCommand('disney')"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
+            <button class="netflix" onmousedown="mouseDownCommand('netflix')" onmouseup="mouseUpCommand('netflix')"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
+            <button class="hbo" onmousedown="mouseDownCommand('hbo')" onmouseup="mouseUpCommand('hbo')"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
+            <button class="disney" onmousedown="mouseDownCommand('disney')" onmouseup="mouseUpCommand('disney')"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt="" style="width: 24px; height: 24px;"></button>
         </div>
         <div class="numbers">
-            <button onclick="sendCommand(1)">1</button>
-            <button onclick="sendCommand(2)">2</button>
-            <button onclick="sendCommand(3)">3</button>
-            <button onclick="sendCommand(4)">4</button>
-            <button onclick="sendCommand(5)">5</button>
-            <button onclick="sendCommand(6)">6</button>
-            <button onclick="sendCommand(7)">7</button>
-            <button onclick="sendCommand(8)">8</button>
-            <button onclick="sendCommand(9)">9</button>
-            <button onclick="sendCommand('*')">*</button>
-            <button onclick="sendCommand(0)">0</button>
-            <button onclick="sendCommand('#')">#</button>
+            <button onmousedown="mouseDownCommand(1)" onmouseup="mouseUpCommand(1)">1</button>
+            <button onmousedown="mouseDownCommand(2)" onmouseup="mouseUpCommand(2)">2</button>
+            <button onmousedown="mouseDownCommand(3)" onmouseup="mouseUpCommand(3)">3</button>
+            <button onmousedown="mouseDownCommand(4)" onmouseup="mouseUpCommand(4)">4</button>
+            <button onmousedown="mouseDownCommand(5)" onmouseup="mouseUpCommand(5)">5</button>
+            <button onmousedown="mouseDownCommand(6)" onmouseup="mouseUpCommand(6)">6</button>
+            <button onmousedown="mouseDownCommand(7)" onmouseup="mouseUpCommand(7)">7</button>
+            <button onmousedown="mouseDownCommand(8)" onmouseup="mouseUpCommand(8)">8</button>
+            <button onmousedown="mouseDownCommand(9)" onmouseup="mouseUpCommand(9)">9</button>
+            <button onmousedown="mouseDownCommand('*')" onmouseup="mouseUpCommand('*')">*</button>
+            <button onmousedown="mouseDownCommand(0)" onmouseup="mouseUpCommand(0)">0</button>
+            <button onmousedown="mouseDownCommand('#')" onmouseup="mouseUpCommand('#')">#</button>
         </div>
     </div>
 
@@ -236,9 +236,18 @@
     <script>
         const socket = io();
 
-        function sendCommand(command) {
-            socket.emit('remote_command', { action: command });
+        function sendCommand(command, mouse) {
+            socket.emit('remote_command', { action: command, mouse: mouse });
         }
+
+        function mouseDownCommand(command) {
+            sendCommand(command, 'down');
+        }
+
+        function mouseUpCommand(command) {
+            sendCommand(command, 'up');
+        }
+
     </script>
 </body>
 </html>

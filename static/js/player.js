@@ -3,6 +3,9 @@ const socket = io();
 let playing = false;
 let width = 0;
 let interval;
+let leftIndicator = null;
+let rightIndicator = null;
+let skipInterval;
 const playPauseBtn = document.getElementById('play-pause');
 const rewindBtn = document.getElementById('rewind');
 const forwardBtn = document.getElementById('forward');
@@ -21,10 +24,28 @@ let sidebarVisible = false;
 let hideSidebarTimeout;
 let focusControlIndex = 1;
 
+let holdTimeout;
+let isHolding = false;
+let clickTimeout;
+let clickCount = 0;
+
 const cooldown = 5000;
 
 const maxTime = 5 * 60; 
-const totalSeconds = 5 * 60; // 5 minutes in seconds
+const totalSeconds = 15 * 60; // 5 minutes in seconds
+
+function animateButton(button) {
+    button.classList.add('clicked');
+    setTimeout(() => {
+        button.classList.remove('clicked');
+    }, 200);
+}
+
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', () => {
+        animateButton(button);
+    });
+});
 
 playPauseBtn.addEventListener('click', togglePlayPause);
 
@@ -45,7 +66,8 @@ function startProgress() {
             playing = false;
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
         } else {
-            width++;
+            step = 1 / totalSeconds * 10; // update every 0.1 seconds to look smoother
+            width += step;
             updateProgress(width);
         }
     }, 100);
@@ -53,6 +75,38 @@ function startProgress() {
 
 function stopProgress() {
     clearInterval(interval);
+}
+
+function skipForward(speed) {
+    // speed = seconds per second
+    skipInterval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(skipInterval);
+        } else {
+            step = speed / totalSeconds * 10;
+            width += step;
+            updateProgress(width);
+        }
+    }, 100);
+}
+
+function skipBackward(speed) {
+    skipInterval = setInterval(() => {
+        if (width <= 0) {
+            clearInterval(skipInterval);
+        } else {
+            step = speed / totalSeconds * 10;
+            width -= step;
+            updateProgress(width);
+        }
+    }, 100);
+}
+
+function stopSkip() {
+    clearInterval(skipInterval);
+    leftIndicator = null;
+    rightIndicator = null;
+    updateProgress(width);
 }
 
 function updateProgress(value) {
@@ -84,15 +138,6 @@ progressHandle.addEventListener('mousedown', (e) => {
     }, { once: true });
 });
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-        width = Math.min(100, width + 5);
-    } else if (e.key === 'ArrowLeft') {
-        width = Math.max(0, width - 5);
-    }
-    updateProgress(width);
-});
-
 rewindBtn.addEventListener('click', () => {
     width = Math.max(0, width - 15);
     updateProgress(width);
@@ -105,9 +150,9 @@ forwardBtn.addEventListener('click', () => {
 
 playPauseBtn.addEventListener('click', togglePlayPause);
 
-function showControls() {
+function showControls(resetTimer = true) {
     controls.classList.remove('hidden');
-    resetHideControlsTimeout();
+    resetHideControlsTimeout(resetTimer);
     controlsVisible = true;
 }
 
@@ -118,28 +163,15 @@ function hideControls() {
     focusControlIndex = 1;
 }
 
-// function toggleControls() {
-//     if (controlsVisible) {
-//         hideControls();
-//         controlsVisible = false;
-//     } else {
-//         showControls();
-//         controlsVisible = true;
-//     }
-// }
+document.addEventListener('mousemove', () => {
+    showControls();
+    controlsVisible = true;
+});
 
-// document.addEventListener('keydown', (e) => {
-//     showControls();
-//     controlsVisible = true;
-// });
-
-// document.addEventListener('mousemove', () => {
-//     showControls();
-//     controlsVisible = true;
-// });
-
-function resetHideControlsTimeout() {
+function resetHideControlsTimeout(resetTimer = true) {
     clearTimeout(hideControlsTimeout);
+    if (!resetTimer) return;
+
     hideControlsTimeout = setTimeout(() => {
         hideControls();
     }, cooldown);
@@ -180,13 +212,17 @@ function updateTimeDisplay(value) {
     if (value < 0) {
         value = 0;
     }
-    const rect = progressBar.getBoundingClientRect();
-    const handleRect = progressHandle.getBoundingClientRect();
     const percentage = value / 100;
     const currentTime = totalSeconds * percentage;
     const minutes = Math.floor(currentTime / 60);
     const seconds = Math.floor(currentTime % 60);
-    timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    if (leftIndicator !== null) {
+        timeDisplay.textContent = `${leftIndicator} ${minutes}:${seconds.toString().padStart(2, '0')}`;
+    } else if (rightIndicator !== null) {
+        timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} ${rightIndicator}`;
+    } else {
+        timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
     timeDisplay.style.left = `${value}%`;
 }
 
@@ -194,7 +230,7 @@ function updateProgressText(value) {
     const currentTime = totalSeconds * (value / 100);
     const minutes = Math.floor(currentTime / 60);
     const seconds = Math.floor(currentTime % 60);
-    progressText.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / 5:00`;
+    progressText.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / ${(totalSeconds / 60)}:00`;
 }
 
 progressBar.addEventListener('mousemove', function(e) {
@@ -262,6 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSelection();
 
     function changeChannel(action) {
+        openSidebar();
         const sidebar = document.querySelector('.sidebar');
         if (sidebar && sidebar.classList.contains('visible') && channelItems.length > 0) {
             if (action === 'up') {
@@ -284,11 +321,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const controlArray = Array.from(controls);
     let progressHandleFocused = false;
 
-    function remoteAction(action) {
+    function remoteAction(action, clicks, holding) {
         if ((action === "up" || action === "down") && !controlsVisible) {
             openSidebar();
         }
-        showControls();
+        showControls(!holding);
         switch (action) {
             case "up":
                 if (sidebarVisible) {
@@ -318,8 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (focusControlIndex === 0) {
                     openSidebar();
                 } else if (progressHandleFocused) {
-                    width = Math.max(0, width - 5);
-                    updateProgress(width);
+                   // TODO move to previous descrete time step
                 } else {
                     focusControlIndex -= 1;
                 }
@@ -329,8 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     focusControlIndex = 1; // deafult is play/pause button
                     closeSidebar();
                 } else if (progressHandleFocused) {
-                    width = Math.min(100, width + 5);
-                    updateProgress(width);
+                   // TODO move to next descrete time step
                 } else {
                     focusControlIndex += 1;
                     if (focusControlIndex >= controlArray.length) {
@@ -338,20 +373,104 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 break;
+            case "release":
+                stopSkip();
+                break;
+            case "forward":
+                progressHandleFocused = true;
+                if (holding) {
+                    let speed = 1;
+                    if (clicks === 1) {
+                        speed = 4;
+                        rightIndicator = '>';
+                    } else if (clicks === 2) {
+                        speed = 8;
+                        rightIndicator = '>>'
+                    }
+                    else if (clicks === 3) {
+                        speed = 16;
+                        rightIndicator = '>>>';
+                    }
+                    skipForward(speed);
+                } else {
+                    let percentage = width / 100;
+                    let currentTime = totalSeconds * percentage;
+                    let timeStep = 0;
+                    if (clicks === 1) {
+                        timeStep = 15;
+                    }
+                    if (clicks === 2) {
+                        timeStep = 60;
+                    }
+                    if (clicks === 3) {
+                        timeStep = 300;
+                    }
+                    let newTime = Math.min(totalSeconds, currentTime + timeStep);
+                    width = (newTime / totalSeconds) * 100;
+                    updateProgress(width);
+                    animateButton(forwardBtn);
+                }
+                break;
+            case "rewind":
+                progressHandleFocused = true;
+                if (holding) {
+                    let speed = 1;
+                    if (clicks === 1) {
+                        speed = 4;
+                        leftIndicator = '<';
+                    } else if (clicks === 2) {
+                        speed = 8;
+                        leftIndicator = '<<';
+                    }
+                    else if (clicks === 3) {
+                        speed = 16;
+                        leftIndicator = '<<<';
+                    }
+                    skipBackward(speed);
+                } else {
+                    let percentage = width / 100;
+                    let currentTime = totalSeconds * percentage;
+                    let timeStep = 0;
+                    if (clicks === 1) {
+                        timeStep = 15;
+                    }
+                    if (clicks === 2) {
+                        timeStep = 60;
+                    }
+                    if (clicks === 3) {
+                        timeStep = 300;
+                    }
+                    let newTime = Math.max(0, currentTime - timeStep);
+                    width = (newTime / totalSeconds) * 100;
+                    updateProgress(width);
+                    animateButton(rewindBtn);
+                }
+                break;
+            case "play":
+                togglePlayPause();
+                animateButton(playPauseBtn);
+                break;
             case "ok":
                 if (sidebarVisible) {
                     closeSidebar();
                 }
                 else if (progressHandleFocused) {
-
-                }
-                else {
+                    togglePlayPause();
+                    animateButton(playPauseBtn);
+                } else {
                     const focusedElement = controlArray[focusControlIndex];
                     if (focusedElement) {
                         focusedElement.click();
                     }
                 }
                 break;    
+            case "home":
+                document.getElementById("home").click();
+                break;
+            case "back":
+                document.getElementById("home").click();
+                break;
+
         }
 
         updateFocus();
@@ -379,27 +498,67 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener("keydown", (e) => {
         switch (e.key) {
             case "ArrowUp":
-                remoteAction("up");
+                remoteAction("up", 1, false);
                 break;
             case "ArrowDown":
-                remoteAction("down");
+                remoteAction("down", 1, false);
                 break;
             case "ArrowLeft":
-                remoteAction("left");
+                remoteAction("left", 1, false);
                 break;
             case "ArrowRight":
-                remoteAction("right");
+                remoteAction("right", 1, false);
                 break;
             case "Enter":
-                remoteAction("ok");
+                remoteAction("ok", 1, false);
                 break;
         }
     });
 
     socket.on('command', (data) => {
         const action = data.action;
+        const mouse = data.mouse;
 
-        remoteAction(action);
+        if (mouse === 'up') {
+            clearTimeout(holdTimeout);
+            if (isHolding) {
+                remoteAction('release', clickCount, isHolding);
+                isHolding = false;
+                return;
+            }
+            clickCount++;
+            if (clickCount === 1) {
+                clickTimeout = setTimeout(() => {
+                    if (clickCount === 1) {
+                        remoteAction(action, 1, isHolding);
+                        clearTimeout(holdTimeout);
+                    }
+                    clickCount = 0;
+                }, 200);
+            } else if (clickCount === 2) {
+                clickTimeout = setTimeout(() => {
+                    if (clickCount === 2) {
+                        remoteAction(action, 2, isHolding);
+                        clearTimeout(holdTimeout);
+                    }
+                    clickCount = 0;
+                }, 200);
+            } else if (clickCount === 3) {
+                remoteAction(action, 3, isHolding);
+                clearTimeout(holdTimeout);
+                clickCount = 0;
+            }
+        }
+        else if (mouse === 'down') {
+            clearTimeout(clickTimeout);
+            holdTimeout = setTimeout(() => {
+                let innerClickCount = clickCount + 1;
+                isHolding = true;
+                remoteAction(action, innerClickCount, isHolding);
+                clickCount = 0;
+            }, 500);
+            return;
+        }
     });
 
     updateFocus();

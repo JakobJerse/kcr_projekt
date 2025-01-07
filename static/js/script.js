@@ -175,6 +175,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     socket.on('command', (data) => {
+        const mouse = data.mouse;
+        
+        if (mouse === 'up')
+            return;
+        
         const action = data.action;
 
         if (action === 'up' || action === 'down' || action === 'left' || action === 'right') {

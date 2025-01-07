@@ -67,6 +67,11 @@ body {
     cursor: pointer;
     vertical-align: middle;
     margin-top: 2px;
+    transition: transform 0.2s;
+}
+
+.btn.clicked {
+    transform: scale(1.2);
 }
 
 .progress-bar-container {
