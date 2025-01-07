@@ -77,7 +77,7 @@
         }
 
         .circular-controls .center {
-            background: #6200ea;
+            background: #0056b3;
             color: white;
             width: 40px; /* Increased center button size */
             height: 40px; /* Increased center button size */
@@ -105,7 +105,7 @@
         }
 
         .button-row .voice {
-            background: #6200ea;
+            background: #0056b3;
             color: white;
             font-size: 18px;
         }
@@ -181,9 +181,13 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="remote">
+        <div class="button-row">
+            <button class="up" style="background: #e63c3f; color: #ffffff"><i class="fa-solid fa-power-off"></i></button>
+        </div>
         <div class="circular-controls">
             <button class="up" onmousedown="mouseDownCommand('up')" onmouseup="mouseUpCommand('up')">▲</button>
             <button class="down" onmousedown="mouseDownCommand('down')" onmouseup="mouseUpCommand('down')">▼</button>
@@ -192,23 +196,23 @@
             <button class="center" onmousedown="mouseDownCommand('ok')" onmouseup="mouseUpCommand('ok')">OK</button>
         </div>
         <div class="button-row">
-            <button class="voice" onmousedown="mouseDownCommand('voice')" onmouseup="mouseUpCommand('voice')">🎤</button>
-            <button class="search" onmousedown="mouseDownCommand('search')" onmouseup="mouseUpCommand('search')">🔍</button>
-            <button class="back" onmousedown="mouseDownCommand('back')" onmouseup="mouseUpCommand('back')">↩</button>
+            <button class="back" onmousedown="mouseDownCommand('back')" onmouseup="mouseUpCommand('back')"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+            <button class="voice" onmousedown="mouseDownCommand('voice')" onmouseup="mouseUpCommand('voice')"><i class="fa-solid fa-microphone"></i></button>
+            <button class="search" onmousedown="mouseDownCommand('search')" onmouseup="mouseUpCommand('search')"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="button-row">
-            <button class="settings" onmousedown="mouseDownCommand('settings')" onmouseup="mouseUpCommand('settings')">⚙</button>
-            <button class="home" onmousedown="mouseDownCommand('home')" onmouseup="mouseUpCommand('home')">🏠</button>
-            <button class="power" onmousedown="mouseDownCommand('power')" onmouseup="mouseUpCommand('power')">⚡</button>
+            <button class="settings" onmousedown="mouseDownCommand('settings')" onmouseup="mouseUpCommand('settings')"><i class="fa-solid fa-gear"></i></button>
+            <button class="home" onmousedown="mouseDownCommand('home')" onmouseup="mouseUpCommand('home')"><i class="fa-solid fa-house"></i></button>
+            <button class="power" onmousedown="mouseDownCommand('power')" onmouseup="mouseUpCommand('power')"><i class="fa-solid fa-bolt"></i></button>
         </div>
         <div class="button-row">
-            <button class="rewind" onmousedown="mouseDownCommand('rewind')" onmouseup="mouseUpCommand('rewind')">⏪</button>
-            <button class="play" onmousedown="mouseDownCommand('play')" onmouseup="mouseUpCommand('play')">▶⏹</button>
-            <button class="forward" onmousedown="mouseDownCommand('forward')" onmouseup="mouseUpCommand('forward')">⏩</button>
+            <button class="rewind" onmousedown="mouseDownCommand('rewind')" onmouseup="mouseUpCommand('rewind')"><i class="fa-solid fa-backward"></i></button>
+            <button class="play" onmousedown="mouseDownCommand('play')" onmouseup="mouseUpCommand('play')"><i class="fa-solid fa-play"></i></button>
+            <button class="forward" onmousedown="mouseDownCommand('forward')" onmouseup="mouseUpCommand('forward')"><i class="fa-solid fa-forward"></i></button>
         </div>
         <div class="button-row">
             <button class="long-button" onmousedown="mouseDownCommand('vol_down')" onmouseup="mouseUpCommand('vol_down')">Vol -</button>
-            <button class="mute" onmousedown="mouseDownCommand('mute')" onmouseup="mouseUpCommand('mute')">🔇</button>
+            <button class="mute" onmousedown="mouseDownCommand('mute')" onmouseup="mouseUpCommand('mute')"><i class="fa-solid fa-volume-xmark"></i></button>
             <button class="long-button" onmousedown="mouseDownCommand('vol_up')" onmouseup="mouseUpCommand('vol_up')">Vol +</button>
         </div>
         <div class="button-row">
