@@ -419,6 +419,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     socket.on('command', (data) => {
         const action = data.action;
+        const mouse = data.mouse;
+        if (mouse === 'up')
+            return;
         // console.log(current_tab)
         if (action === 'up' || action === 'down' || action === 'left' || action === 'right' || action == 'ok' || action == "back") {
             moveFocus1(action);
