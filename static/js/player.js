@@ -17,6 +17,10 @@ const player = document.getElementById('player');
 const sidebar = document.getElementById('sidebar');
 const timeDisplay = document.getElementById('time-display');
 const progressText = document.getElementById('progress-text');
+const volumeDownBtn = document.getElementById('volume-down');
+const volumeUpBtn = document.getElementById('volume-up');
+const volumeBar = document.getElementById('volume-bar');
+const volumeProgress = document.getElementById('volume-progress');
 
 let controlsVisible = true;
 let hideControlsTimeout;
@@ -32,7 +36,10 @@ let clickCount = 0;
 const cooldown = 5000;
 
 const maxTime = 5 * 60; 
-const totalSeconds = 15 * 60; // 5 minutes in seconds
+const totalSeconds = 15 * 60; // 15 minutes in seconds
+
+let volume = 50;
+let muteVolume = -1;
 
 function animateButton(button) {
     button.classList.add('clicked');
@@ -40,6 +47,44 @@ function animateButton(button) {
         button.classList.remove('clicked');
     }, 200);
 }
+
+function updateVolumeBar() {
+    volumeProgress.style.width = `${volume}%`;
+}
+
+function volumeDown() {
+    if (volume > 0) {
+        volume -= 10;
+        updateVolumeBar();
+        animateButton(volumeDownBtn);
+        muteVolume = -1;
+    }
+}
+
+function volumeUp() {
+    if (volume < 100) {
+        volume += 10;
+        updateVolumeBar();
+        animateButton(volumeUpBtn);
+        muteVolume = -1;
+    }
+}
+
+function toggleMute() {
+    if (muteVolume === -1) {
+        muteVolume = volume;
+        volume = 0;
+    } else {
+        volume = muteVolume;
+        muteVolume = -1;
+    }
+    updateVolumeBar();
+}
+
+volumeDownBtn.addEventListener('click', volumeDown);
+volumeUpBtn.addEventListener('click', volumeUp);
+
+updateVolumeBar();
 
 document.querySelectorAll('.btn').forEach(button => {
     button.addEventListener('click', () => {
@@ -149,6 +194,9 @@ forwardBtn.addEventListener('click', () => {
 });
 
 playPauseBtn.addEventListener('click', togglePlayPause);
+
+volumeUpBtn.addEventListener('click', volumeUp);
+volumeDownBtn.addEventListener('click', volumeDown);
 
 function showControls(resetTimer = true) {
     controls.classList.remove('hidden');
@@ -470,7 +518,19 @@ document.addEventListener('DOMContentLoaded', function() {
             case "back":
                 document.getElementById("home").click();
                 break;
-
+            case "vol_down":
+                for (let i = 0; i < clicks; i++) {
+                    volumeDown();
+                }
+                break;
+            case "vol_up":
+                for (let i = 0; i < clicks; i++) {
+                    volumeUp();
+                }
+                break;
+            case "mute":
+                toggleMute();
+                break;
         }
 
         updateFocus();

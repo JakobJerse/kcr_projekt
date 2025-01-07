@@ -59,6 +59,11 @@ body {
     padding: 10px 10px;
 }
 
+.control-buttons > div {
+    display: flex;
+    align-items: center;
+}
+
 .btn {
     background: none;
     border: none;
@@ -190,4 +195,34 @@ body {
     border-radius: 50%;
     transition: outline 0.2s ease-in-out;
 }
-  
+
+.volume-controls {
+    color: white;
+    font-size: 25px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#volume-down, #volume-up {
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#volume-bar {
+    width: 100px;
+    height: 10px;
+    background-color: #555;
+    position: relative;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+#volume-progress {
+    height: 100%;
+    background-color: white;
+    width: 50%;
+    border-radius: 5px;
+}

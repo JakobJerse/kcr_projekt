@@ -30,6 +30,13 @@
                     <button class="btn" id="play-pause"><i class="fas fa-play"></i></button>
                     <button class="btn" id="forward"><i class="fas fa-redo-alt"></i></button>
                     <div class="progress-text" id="progress-text">0:00 / 5:00</div>
+                    <div class="volume-controls">
+                        <button class="btn" id="volume-down"><i class="fas fa-volume-down"></i></button>
+                        <div class="volume-bar" id="volume-bar">
+                            <div class="volume-progress" id="volume-progress"></div>
+                        </div>
+                        <button class="btn" id="volume-up"><i class="fas fa-volume-up"></i></button>
+                    </div>
                 </div>
                 <div>
                     <button class="btn" id="home" onclick="window.location.href='{{ url_for('index') }}'"><i class="fas fa-home"></i></button>
