@@ -44,7 +44,7 @@
       <div class="content flex-fill overflow-hidden p-5 mb-5">
         <!-- Main Title -->
         <div class="row">
-          <h1 class="fw-bold">Filmi</h1>
+          <h1 class="fw-bold">Serije</h1>
         </div>
         <!-- Izbor zate -->
         <div class="row py-4 align-items-center">
@@ -55,53 +55,49 @@
         </div>
         <div class="row mb-5">
           <div class="d-flex flex-row gap-5">
-            <div class="card card-xl" onclick="openPreview('Izvor', '{{ url_for('static', filename='images/inception.jpg') }}', 'Predvajaj', true, 'Znanstvena fantastika', 'Netflix', 'Film', 'Leonardo DiCaprio, Joseph Gordon-Levitt')">
+            <div class="card card-xl" onclick="openPreview('Črni seznam', '{{ url_for('static', filename='images/blacklist.jpg') }}', 'Predvajaj', false, 'Kriminalistična nadaljevanka', 'Kanal A', '11 sezon', 'James Spader, Megan Boone')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/inception.jpg') }}" alt="Izvor">
-                <div class="card-overlay p-4">
-                  <div class="card-content">
-                    <h3 class="fw-bold text-white">Izvor</h3>
-                    <span class="channel-name text-white fw-bold">Netflix</span>
+                  <img src="{{ url_for('static', filename='images/blacklist.jpg') }}" alt="Image 2">
+                  <div class="card-overlay p-4">
+                      <h3 class="fw-bold text-white">Črni seznam</h3>
+                      <span class="channel-name text-white fw-bold mt-1">Kanal A</span>
                   </div>
-                </div>
               </div>
             </div>
-            <div class="card card-xl" onclick="openPreview('Vitez teme', '{{ url_for('static', filename='images/dark-knight.jpg') }}', 'Predvajaj', true, 'Akcija', 'HBO Max', 'Film', 'Christian Bale, Heath Ledger')">
+            <div class="card card-xl" onclick="openPreview('Kriva pota', '{{ url_for('static', filename='images/breaking-bad.jpg') }}', 'Predvajaj', false, 'Drama', 'Netflix', '5 sezon', 'Bryan Cranston, Aaron Paul')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/dark-knight.jpg') }}" alt="Vitez teme">
-                <div class="card-overlay p-4">
-                  <div class="card-content">
-                    <h3 class="fw-bold text-white">Vitez teme</h3>
-                    <span class="channel-name text-white fw-bold">HBO Max</span>
+                  <img src="{{ url_for('static', filename='images/breaking-bad.jpg') }}" alt="Image 3">
+                  <div class="card-overlay p-4">
+                      <h3 class="fw-bold text-white">Kriva pota</h3>
+                      <span class="channel-name text-white fw-bold mt-1">Netflix</span>
                   </div>
-                </div>
               </div>
             </div>
-            <div class="card card-xl" onclick="openPreview('Medzvezdje', '{{ url_for('static', filename='images/interstellar.jpg') }}', 'Predvajaj', true, 'Znanstvena fantastika', 'Cinestar Movies', 'Film', 'Matthew McConaughey, Anne Hathaway')">
+            <div class="card card-xl" onclick="openPreview('Naša mala klinika', '{{ url_for('static', filename='images/nmk.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'Voyo', '7 sezon', 'Tanja Ribić, Jernej Šugman, Bojan Emeršič, Janez Hočevar')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/interstellar.avif') }}" alt="Medzvezdje">
-                <div class="card-overlay p-4">
-                  <div class="card-content">
-                    <h3 class="fw-bold text-white">Medzvezdje</h3>
-                    <span class="channel-name text-white fw-bold">Cinestar Movies</span>
+                  <img src="{{ url_for('static', filename='images/nmk.jpg') }}" alt="Image 4">
+                  <div class="card-overlay p-4">
+                      <div class="card-content">
+                          <h3 class="fw-bold text-white">Naša mala klinika</h3>
+                          <span class="channel-name text-white fw-bold mt-1">Voyo</span>
+                      </div>
                   </div>
-                </div>
               </div>
             </div>
-            <div class="card card-xl" onclick="openPreview('Parazit', '{{ url_for('static', filename='images/parasite.jpg') }}', 'Predvajaj', true, 'Triler', 'TV Slovenija 1', 'Film', 'Song Kang-ho, Lee Sun-kyun')">
+            <div class="card card-xl" onclick="openPreview('Igra lignja', '{{ url_for('static', filename='images/squidgame.jpg') }}', 'Predvajaj', false, 'Drama', 'Netflix', '2 sezoni', 'Lee Jung-jae, Park Hae-soo, Wi Ha-joon')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/parasite.jpg') }}" alt="Parazit">
-                <div class="card-overlay p-4">
-                  <div class="card-content">
-                    <h3 class="fw-bold text-white">Parazit</h3>
-                    <span class="channel-name text-white fw-bold">TV Slovenija 1</span>
+                  <img src="{{ url_for('static', filename='images/squidgame.jpg') }}" alt="Image 5">
+                  <div class="card-overlay p-4">
+                      <div class="card-content">
+                          <h3 class="fw-bold text-white">Igra lignja</h3>
+                          <span class="channel-name text-white fw-bold mt-1">Netflix</span>
+                      </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-
+        
         <!-- Trenutno najbolj gledano -->
         <div class="row py-4 align-items-center">
           <div class="d-flex align-items-center gap-3 text-white">
@@ -111,40 +107,48 @@
         </div>
         <div class="row mb-5">
           <div class="d-flex flex-row gap-5">
-            <div class="card card-m" onclick="openPreview('Boter', '{{ url_for('static', filename='images/godfather.jpg') }}', 'Predvajaj', false, 'Drama', 'Kanal A', 'Film', 'Marlon Brando, Al Pacino')">
+            <div class="card card-m" onclick="openPreview('Veliki Pokovci', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '12 sezon', 'Johnny Galecki, Jim Parsons, Kaley Cuoco')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/godfather.jpg') }}" alt="Boter">
-                <div class="card-overlay p-4">
-                  <h3 class="fw-bold text-white">Boter</h3>
-                  <span class="channel-name text-white fw-bold mt-1">Kanal A</span>
-                </div>
+                  <img src="{{ url_for('static', filename='images/bigbang.jpg') }}" alt="Image 1">
+                  <div class="card-overlay p-4">
+                      <div class="card-content">
+                          <h3 class="fw-bold text-white">Veliki pokovci</h3>
+                          <span class="channel-name text-white fw-bold mt-1">HBO</span>
+                      </div>
+                  </div>
               </div>
             </div>
-            <div class="card card-m" onclick="openPreview('Maščevalci: Zaključek', '{{ url_for('static', filename='images/endgame.jpg') }}', 'Predvajaj', false, 'Akcija', 'Disney+', 'Film', 'Robert Downey Jr., Chris Evans')">
+            <div class="card card-m" onclick="openPreview('Kako sem spoznal tvojo mamo', '{{ url_for('static', filename='images/tvojamami.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'Disney+', '9 sezon', 'Josh Radnor, Jason Segel, Cobie Smulders')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/endgame.jpg') }}" alt="Maščevalci: Zaključek">
-                <div class="card-overlay p-4">
-                  <h3 class="fw-bold text-white">Maščevalci: Zaključek</h3>
-                  <span class="channel-name text-white fw-bold mt-1">Disney+</span>
-                </div>
+                  <img src="{{ url_for('static', filename='images/tvojamami.jpg') }}" alt="Image 2">
+                  <div class="card-overlay p-4">
+                      <div class="card-content">
+                          <h3 class="fw-bold text-white">Kako sem spoznal tvojo mamo</h3>
+                          <span class="channel-name text-white fw-bold mt-1">Disney+</span>
+                      </div>                        
+                  </div>
               </div>
             </div>
-            <div class="card card-m" onclick="openPreview('Rešitev v Shawshanku', '{{ url_for('static', filename='images/shawshank.jpg') }}', 'Predvajaj', false, 'Drama', 'Kanal A', 'Film', 'Tim Robbins, Morgan Freeman')">
+            <div class="card card-m" onclick="openPreview('Prijatelji', '{{ url_for('static', filename='images/friends.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '10 sezon', 'Jennifer Aniston, Courteney Cox, Lisa Kudrow')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/shawshank.jpg') }}" alt="Rešitev v Shawshanku">
-                <div class="card-overlay p-4">
-                  <h3 class="fw-bold text-white">Rešitev v Shawshanku</h3>
-                  <span class="channel-name text-white fw-bold mt-1">Kanal A</span>
-                </div>
+                  <img src="{{ url_for('static', filename='images/friends.jpg') }}" alt="Image 3">
+                  <div class="card-overlay p-4">
+                      <div class="card-content">
+                          <h3 class="fw-bold text-white">Prijatelji</h3>
+                          <span class="channel-name text-white fw-bold mt-1">HBO</span>
+                      </div>                        
+                  </div>
               </div>
             </div>
-            <div class="card card-m" onclick="openPreview('Forrest Gump', '{{ url_for('static', filename='images/forrest-gump.jpg') }}', 'Predvajaj', false, 'Drama', 'Voyo', 'Film', 'Tom Hanks, Robin Wright')">
+            <div class="card card-m" onclick="openPreview('Igra Prestolov: S1 E9', '{{ url_for('static', filename='images/progress1.webp') }}', 'Nadaljuj z ogledom', true, 'Drama', 'HBO', '8 sezon, S1 E9.', 'Emilia Clarke, Kit Harington, Peter Dinklage, Lena Headey')">
               <div class="card-image">
-                <img src="{{ url_for('static', filename='images/forrest-gump.webp') }}" alt="Forrest Gump">
-                <div class="card-overlay p-4">
-                  <h3 class="fw-bold text-white">Forrest Gump</h3>
-                  <span class="channel-name text-white fw-bold mt-1">Voyo</span>
-                </div>
+                  <img src="{{ url_for('static', filename='images/progress1.webp') }}" alt="Image 1">
+                  <div class="card-overlay p-4">
+                      <div class="card-content">
+                          <h3 class="fw-bold text-white">Igra Prestolov</h3>
+                          <span class="channel-name text-white fw-bold mt-1">HBO</span>
+                      </div>
+                  </div>
               </div>
             </div>
           </div>

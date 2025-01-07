@@ -8,9 +8,17 @@ socketio = SocketIO(app)
 def landing():
     return render_template('landing.html')
 
+@app.route('/search')
+def search():
+    return render_template('search.html')
+
 @app.route('/movies')
 def movies():
     return render_template('movies.html')
+
+@app.route('/tv-shows')
+def shows():
+    return render_template('tv-shows.html')
 
 @app.route('/favourites')
 def favourites():
@@ -28,7 +36,6 @@ def index():
 def player():
     channel_name = request.args.get('channel', 'Default Channel')  # Default fallback
     return render_template('player.html', channel=channel_name)
-
 
 @socketio.on('remote_command')
 def handle_remote_command(data):

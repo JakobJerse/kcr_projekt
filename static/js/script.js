@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (action === 'up' || action === 'down' || action === 'left' || action === 'right') {
             moveFocus(action);
+            console.log("h1111he")
             tvContent.textContent = `Moved ${action}`;
         } else if (action === 'ok') {
             const focusedElement = focusables[focusIndex];
@@ -193,7 +194,13 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (action === 'play') {
             alert("Got you SON of a GUN!");
             window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        } else if (action === 'search') {
+            // alert("search");
+
+
+            window.location.href = "/search"
         }
+
     });
 
     updateFocus();

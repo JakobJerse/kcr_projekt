@@ -27,32 +27,44 @@
         <div class="sidebar position-fixed p-5 top-0 start-0 vh-100 d-flex flex-column">
             <div class="d-flex flex-column align-items-center gap-4">
                 <a href="{{ url_for('index') }}" class="menu-item active"><img src="{{ url_for('static', filename='icons/home.svg') }}" alt=""></a>
-                <a href="{{ url_for('movies') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/clock.svg') }}" alt=""></a>
+                <a href="{{ url_for('search') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/search.svg') }}" alt=""></a>
+                <a href="{{ url_for('movies') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/movies.svg') }}" alt=""></a>
+                <a href="{{ url_for('shows') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/tv-shows.svg') }}" alt=""></a>
                 <a href="{{ url_for('favourites') }}" class="menu-item"><img src="{{ url_for('static', filename='icons/star.svg') }}" alt=""></a>
+                <a href="https://www.max.com" class="menu-item"><img src="{{ url_for('static', filename='icons/hbo_icon.svg') }}" alt=""></a>
+                <a href="https://www.netflix.com" class="menu-item"><img src="{{ url_for('static', filename='icons/netflix_icon.svg') }}" alt=""></a>
+                <a href="https://www.disneyplus.com" class="menu-item"><img src="{{ url_for('static', filename='icons/disney_logo.svg') }}" alt=""></a>
             </div>
             <div class="profile mt-auto">
-                <a href={{ url_for('landing') }}><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
+                <a href="{{ url_for('landing') }}"><img id="profileImage" src="{{ url_for('static', filename='images/user_profile.png') }}" alt="User Profile"></a>
             </div>
         </div>
 
         <!-- Content -->
-        <div class="content flex-fill p-5">
-            <div class="row mb-5">
+        <div class="content flex-fill overflow-hidden p-5 mb-5">
+
+            <!-- Main Title -->
+            <div class="row">
                 <h1 class="fw-bold" id="username"></h1>
             </div>
+
             <!-- V zivo -->
-            <div class="row my-5">
-                <h3 class="fw-bold text-white"> Glej v živo <i class="fa-solid fa-tv"></i></h3>
+            <div class="row py-4 align-items-center">
+                <div class="d-flex align-items-center gap-3 text-white">
+                  <i class="fa-solid fa-tv"></i>
+                  <h3 class="fw-bold mb-0">Glej v živo</h3>
+                </div>
             </div>
-            <div class="row mb-5 row1">
+
+            <div class="row mb-5">
                 <div class="d-flex flex-row gap-5">
                     <div class="card card-xl" onclick="openPreview('TV Slovenija 1', '{{ url_for('static', filename='images/channel1.webp') }}', 'Glej v živo', true, 'Razvedrilna oddaja', 'TV Slovenija 1', 'Slovenski pozdrav', '/')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/channel1.webp') }}" alt="Image 1">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Slovenski pozdrav</h3>
-                                    <span class="channel-name fw-bold text-white">TV Slovenija 1</span>
+                                    <h3 class="fw-bold text-white">Slovenski pozdrav</h3>
+                                    <span class="channel-name text-white fw-bold">TV Slovenija 1</span>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +74,8 @@
                             <img src="{{ url_for('static', filename='images/skoki.jpg') }}" alt="Image 3">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Smučarski skoki (M) - Novoletna turneja</h3>
-                                    <span class="channel-name fw-bold text-white">TV Slovenija 2</span>
+                                    <h3 class="fw-bold text-white">Smučarski skoki (M) - Novoletna turneja</h3>
+                                    <span class="channel-name text-white fw-bold">TV Slovenija 2</span>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +85,8 @@
                             <img src="{{ url_for('static', filename='images/channel2.webp') }}" alt="Image 2">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">24 UR</h3>
-                                    <span class="channel-name fw-bold text-white">POP TV</span>
+                                    <h3 class="fw-bold text-white">24 UR</h3>
+                                    <span class="channel-name text-white fw-bold">POP TV</span>
                                 </div>
                             </div>
                         </div>
@@ -84,8 +96,8 @@
                             <img src="{{ url_for('static', filename='images/motogp.jpg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">MotoGP - Velika nagrada Berna</h3>
-                                    <span class="channel-name fw-bold text-white">Kanal A</span>
+                                    <h3 class="fw-bold text-white">MotoGP - Velika nagrada Berna</h3>
+                                    <span class="channel-name text-white fw-bold">Kanal A</span>
                                 </div>
                             </div>
                         </div>
@@ -95,27 +107,31 @@
                             <img src="{{ url_for('static', filename='images/mojdragi.jpg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Moj dragi zmore</h3>
-                                    <span class="channel-name fw-bold text-white">Planet TV</span>
+                                    <h3 class="fw-bold text-white">Moj dragi zmore</h3>
+                                    <span class="channel-name text-white fw-bold">Planet TV</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>    
+
             <!--Priporocila -->
-            <div class="row my-5">
-                <h3 class="fw-bold text-white"> Izbor zate <i class="fa-solid fa-hand-point-down"></i></h3>
+            <div class="row py-4 align-items-center">
+                <div class="d-flex align-items-center gap-3 text-white">
+                  <i class="fa-solid fa-hand-point-down"></i>
+                  <h3 class="fw-bold mb-0">Izbor zate</h3>
+                </div>
             </div>
-            <div class="row mb-5 row2">
+            <div class="row mb-5">
                 <div class="d-flex flex-row gap-5">
                     <div class="card card-m" onclick="openPreview('Sam doma', '{{ url_for('static', filename='images/sam-doma.jpeg') }}', 'Predvajaj', false, 'Božična komedija', 'POP TV', 'Film, 210 min', 'Macaulay Culkin, Joe Pesci, Daniel Stern')">
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/sam-doma.jpeg') }}" alt="Image 1">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Sam doma</h3>
-                                    <span class="fw-bold text-white mt-1">POP TV</span>
+                                    <h3 class="fw-bold text-white">Sam doma</h3>
+                                    <span class="channel-name text-white fw-bold mt-1">POP TV</span>
                                 </div>
                             </div>
                         </div>
@@ -124,8 +140,8 @@
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/blacklist.jpg') }}" alt="Image 2">
                             <div class="card-overlay p-4">
-                                <h3 class="channel-name fw-bold text-white">Črni seznam</h3>
-                                <span class="fw-bold text-white mt-1">Kanal A</span>
+                                <h3 class="fw-bold text-white">Črni seznam</h3>
+                                <span class="channel-name text-white fw-bold mt-1">Kanal A</span>
                             </div>
                         </div>
                     </div>
@@ -133,8 +149,8 @@
                         <div class="card-image">
                             <img src="{{ url_for('static', filename='images/breaking-bad.jpg') }}" alt="Image 3">
                             <div class="card-overlay p-4">
-                                <h3 class="channel-name fw-bold text-white">Kriva pota</h3>
-                                <span class="fw-bold text-white mt-1">Netflix</span>
+                                <h3 class="fw-bold text-white">Kriva pota</h3>
+                                <span class="channel-name text-white fw-bold mt-1">Netflix</span>
                             </div>
                         </div>
                     </div>
@@ -143,8 +159,8 @@
                             <img src="{{ url_for('static', filename='images/nmk.jpg') }}" alt="Image 4">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Naša mala klinika</h3>
-                                    <span class="fw-bold text-white mt-1">Voyo</span>
+                                    <h3 class="fw-bold text-white">Naša mala klinika</h3>
+                                    <span class="channel-name text-white fw-bold mt-1">Voyo</span>
                                 </div>
                             </div>
                         </div>
@@ -154,8 +170,8 @@
                             <img src="{{ url_for('static', filename='images/prison-break.jpg') }}" alt="Image 5">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Pobeg iz zapora</h3>
-                                    <span class="fw-bold text-white mt-1">Netflix</span>
+                                    <h3 class="fw-bold text-white">Pobeg iz zapora</h3>
+                                    <span class="channel-name text-white fw-bold mt-1">Netflix</span>
                                 </div>
                             </div>
                         </div>
@@ -165,19 +181,23 @@
                             <img src="{{ url_for('static', filename='images/squidgame.jpg') }}" alt="Image 5">
                             <div class="card-overlay p-4">
                                 <div class="card-content">
-                                    <h3 class="channel-name fw-bold text-white">Igra lignja</h3>
-                                    <span class="fw-bold text-white mt-1">Netflix</span>
+                                    <h3 class="fw-bold text-white">Igra lignja</h3>
+                                    <span class="channel-name text-white fw-bold mt-1">Netflix</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>            
-            <!-- Nadljuj z ogledom -->
-            <div class="row my-5">
-                <h3 class="fw-bold text-white"> Nadaljuj z ogledom <i class="fa-solid fa-forward"></i></h3>
             </div>
-            <div class="row mb-5 row3">
+
+            <!-- Nadljuj z ogledom -->
+            <div class="row py-4 align-items-center">
+                <div class="d-flex align-items-center gap-3 text-white">
+                  <i class="fa-solid fa-forward"></i>
+                  <h3 class="fw-bold mb-0">Nadaljuj z ogledom</h3>
+                </div>
+            </div>
+            <div class="row mb-5">
                 <div class="d-flex flex-row gap-5">
                     <div class="card card-m" onclick="openPreview('Igra Prestolov: S1 E9', '{{ url_for('static', filename='images/progress1.webp') }}', 'Nadaljuj z ogledom', true, 'Drama', 'HBO', '8 sezon, S1 E9.', 'Emilia Clarke, Kit Harington, Peter Dinklage, Lena Headey')">
                         <div class="card-image">
@@ -185,8 +205,8 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Igra Prestolov: S1 E9</h3>
-                                    <span class="fw-bold text-white mt-2">HBO</span>
-                                    <div class="progress mt-2">
+                                    <span class="channel-name text-white fw-bold mt-1">HBO</span>
+                                    <div class="progress mt-3">
                                         <div class="progress-bar" style="width: 60%;" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
@@ -200,8 +220,8 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Dnevnik: 29. 11. 2024</h3>
-                                    <span class="fw-bold text-white mt-2">TV Slovenija 1</span>
-                                    <div class="progress mt-2">
+                                    <span class="channel-name text-white fw-bold mt-1">TV Slovenija 1</span>
+                                    <div class="progress mt-3">
                                         <div class="progress-bar" style="width: 75%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>                        
@@ -214,8 +234,8 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Barcelona vs. Real Madrid</h3>
-                                    <span class="fw-bold text-white mt-2">Šport TV</span>
-                                    <div class="progress mt-2">
+                                    <span class="channel-name text-white fw-bold mt-1">Šport TV</span>
+                                    <div class="progress mt-3">
                                         <div class="progress-bar" style="width: 20%;" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>                        
@@ -228,8 +248,8 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Lilly Phillips: Všeč mi je bilo</h3>
-                                    <span class="fw-bold text-white mt-2">TLC</span>
-                                    <div class="progress mt-2">
+                                    <span class="channel-name text-white fw-bold mt-1">TLC</span>
+                                    <div class="progress mt-3">
                                         <div class="progress-bar" style="width: 90%;" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>                        
@@ -237,12 +257,16 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>       
+
             <!-- Moj izbor -->
-             <div class="row my-5">
-                <h3 class="fw-bold text-white"> Moj sezam za ogled <i class="fa-solid fa-list-check"></i></h3>
+            <div class="row py-4 align-items-center">
+                <div class="d-flex align-items-center gap-3 text-white">
+                  <i class="fa-solid fa-list-check"></i>
+                  <h3 class="fw-bold mb-0">Moj sezam za ogled</h3>
+                </div>
             </div>
-            <div class="row mb-5 row4">
+            <div class="row mb-5">
                 <div class="d-flex flex-row gap-5">
                     <div class="card card-m" onclick="openPreview('Veliki Pokovci', '{{ url_for('static', filename='images/bigbang.jpg') }}', 'Predvajaj', false, 'Humoristična nadaljevanka', 'HBO', '12 sezon', 'Johnny Galecki, Jim Parsons, Kaley Cuoco')">
                         <div class="card-image">
@@ -250,7 +274,7 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Veliki pokovci</h3>
-                                    <span class="fw-bold text-white mt-2">HBO</span>
+                                    <span class="channel-name text-white fw-bold mt-1">HBO</span>
                                 </div>
                             </div>
                         </div>
@@ -261,7 +285,7 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Kako sem spoznal tvojo mamo</h3>
-                                    <span class="fw-bold text-white mt-2">Disney+</span>
+                                    <span class="channel-name text-white fw-bold mt-1">Disney+</span>
                                 </div>                        
                             </div>
                         </div>
@@ -272,7 +296,7 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Zodiac</h3>
-                                    <span class="fw-bold text-white mt-2">Netflix</span>
+                                    <span class="channel-name text-white fw-bold mt-1">Netflix</span>
                                 </div>                        
                             </div>
                         </div>
@@ -283,7 +307,7 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Prijatelji</h3>
-                                    <span class="fw-bold text-white mt-2">HBO</span>
+                                    <span class="channel-name text-white fw-bold mt-1">HBO</span>
                                 </div>                        
                             </div>
                         </div>
@@ -294,7 +318,7 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Skrito v raju</h3>
-                                    <span class="fw-bold text-white mt-2">Voyo</span>
+                                    <span class="channel-name text-white fw-bold mt-1">Voyo</span>
                                 </div>                        
                             </div>
                         </div>
@@ -305,7 +329,7 @@
                             <div class="card-overlay p-4">
                                 <div class="card-content">
                                     <h3 class="fw-bold text-white">Snežak</h3>
-                                    <span class="fw-bold text-white mt-2">Netflix</span>
+                                    <span class="channel-name text-white fw-bold mt-1">Netflix</span>
                                 </div>                        
                             </div>
                         </div>
