@@ -22,7 +22,7 @@ V kolikor želi uporabnik sam preizkusiti vmesnik, si mora vsebino tega repozito
 
 > pip install -r requirements.txt
 
-> python app.py
+`$ python app.py`
 
 (zgornji ukazi predpostavljajo, da ima uporabnik že naložen python)
 
