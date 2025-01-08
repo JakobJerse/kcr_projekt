@@ -16,11 +16,11 @@ Glavni cilj projekta je bil raziskati uporabniške vmesnike štirih glavnih slov
 
 V kolikor želi uporabnik sam preizkusiti vmesnik, si mora vsebino tega repozitorija prenesti na svoj računalnik, ter iz direktorija, kamor je vsebino prenesel v ukazni vrstici izvesti naslednje ukaze:
 
-> python -m venv myvenv
+`$ python -m venv myvenv`
 
-> source ./myvenv/bin/activate
+`$ source ./myvenv/bin/activate`
 
-> pip install -r requirements.txt
+` $pip install -r requirements.txt`
 
 `$ python app.py`
 
