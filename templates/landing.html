@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
@@ -22,41 +24,45 @@
     ></script>
   </head>
 
-  <body>
-    <div class="user-selection-container">
-      <h1>Pozdravljeni!</h1>
-      <h2>Izberite uporabnika</h2>
-      <div class="user-selection">
-        <!-- User Circles as Buttons -->
-        <div class="user-item">
-          <button class="user-circle" onclick="selectUser('user_profile.png', 'Pozdravljen, Nejc!')">
-            <img src={{ url_for('static', filename='images/user_profile.png') }}
-            alt="User 1" />
-          </button>
-          <p>Nejc</p>
+  <body class="h-100">
+    <div class="d-flex flex-column h-100 justify-content-center align-middle">
+      <div>
+        <div class="d-flex flex-column align-items-center align-middle">
+          <h1 class="fw-bold">Pozdravljeni!</h1>
+          <h2>Izberite uporabnika</h2>
         </div>
-        <div class="user-item">
-          <button class="user-circle" onclick="selectUser('user_profile2.png', 'Ooo, Kristina!')">
-            <img src={{ url_for('static', filename='images/user_profile2.png')
-            }} alt="User 2" />
-          </button>
-          <p>Kristina</p>
+        <div class="user-selection">
+          <!-- User Circles as Buttons -->
+          <div class="user-item">
+            <button class="user-circle" onclick="selectUser('user_profile.png', 'Pozdravljen, Nejc!')">
+              <img src={{ url_for('static', filename='images/user_profile.png') }}
+              alt="User 1" />
+            </button>
+            <p>Nejc</p>
+          </div>
+          <div class="user-item">
+            <button class="user-circle" onclick="selectUser('user_profile2.png', 'Ooo, Kristina!')">
+              <img src={{ url_for('static', filename='images/user_profile2.png')
+              }} alt="User 2" />
+            </button>
+            <p>Kristina</p>
+          </div>
+          <div class="user-item">
+            <button class="user-circle" onclick="selectUser('user_profile3.png', 'Pozdravljen, Cene!')">
+              <img src={{ url_for('static', filename='images/user_profile3.png')
+              }} alt="User 3" />
+            </button>
+            <p>Cene</p>
+          </div>
+  
+          <!-- Plus Circle -->
+          <div class="user-item">
+            <button class="user-circle add-user">
+              <span>+</span>
+            </button>
+            <p>Dodaj uporabnika</p>
         </div>
-        <div class="user-item">
-          <button class="user-circle" onclick="selectUser('user_profile3.png', 'Pozdravljen, Cene!')">
-            <img src={{ url_for('static', filename='images/user_profile3.png')
-            }} alt="User 3" />
-          </button>
-          <p>Cene</p>
-        </div>
-
-        <!-- Plus Circle -->
-        <div class="user-item">
-          <button class="user-circle add-user">
-            <span>+</span>
-          </button>
-          <p>Dodaj uporabnika</p>
       </div>
-    </div>
+      </div>
   </body>
 </html>
