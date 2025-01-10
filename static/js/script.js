@@ -15,13 +15,23 @@ window.onload = function () {
     }
 };
 
+var isModalOpen = false;
 
 function openPreview(channelName, imageUrl, buttonText = 'Glej v živo', flag = false, genre = '', streamingPlatform = '', info = '', cast = '') {
+    
+    isModalOpen = true;
+    modalItems = [
+        document.getElementById('playButton'), 
+        document.getElementById('startOverButton'), 
+        document.getElementById('closeButton')];
+    focusIndex = focusables.indexOf(modalItems[0]);
+
+
     const modal = document.getElementById('previewModal');
     const title = document.getElementById('previewTitle');
-    const modalImage = modal.querySelector('.preview-image img');
-    const playButton = document.querySelector('.play-btn');
-    const startOverButton = document.querySelector('.start-over-btn');
+    const modalImage = document.getElementById('previewImage');
+    const playButton = document.getElementById('playButton');
+    const startOverButton = document.getElementById('startOverButton');
     const genreSpan = document.getElementById('previewGenre');
     const infoSpan = document.getElementById('previewInfo');
     const streamingPlatformSpan = document.getElementById('previewStreamingPlatform');
@@ -54,6 +64,7 @@ function openPreview(channelName, imageUrl, buttonText = 'Glej v živo', flag = 
 function closePreview() {
     const modal = document.getElementById('previewModal');
     modal.style.display = 'none';
+    isModalOpen = false;
 }
 
 function playChannel(channelName) {
@@ -63,11 +74,14 @@ function playChannel(channelName) {
 
 
 const socket = io();
+var focusables = [];
+var sidebarItems = [];
+var modalItems = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     let focusIndex = 0;
     const sidebar = document.querySelector(".sidebar");
-    const sidebarItems = [document.getElementById('home_button'),
+    sidebarItems = [document.getElementById('home_button'),
         document.getElementById('search_button'),
         document.getElementById('movies_button'),
         document.getElementById('shows_button'),
@@ -82,12 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
     rows = rows.filter(row => row !== null);
     const allCards = rows.flatMap(row => Array.from(row.querySelectorAll(".card")));
 
-    const focusables = Array.from(sidebarItems).concat([profileImage]).concat(allCards);
-
+    focusables = Array.from(sidebarItems).concat([profileImage]).concat(allCards);
     const active = document.querySelector(".active");
-    focusIndex = focusables.indexOf(active);
+    focusIndex = focusables.indexOf(active)
+
+    updateFocus();
 
     function updateFocus() {
+        console.log(modalItems)
+        focusables = !isModalOpen ? Array.from(sidebarItems).concat([profileImage]).concat(allCards) : modalItems;
+
+        console.log(focusables)
+        console.log(focusIndex)
         focusables.forEach((item, index) => {
             item.classList.toggle("focused", index === focusIndex);
         });

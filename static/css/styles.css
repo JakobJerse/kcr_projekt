@@ -219,19 +219,20 @@ h1 {
   opacity: 0.5;
 }
 
-.primary-button {
-  background-color: var(--color-primary) !important;
-  margin-top: 1rem;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
+.btn-primary, .btn-secondary {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
-.primary-button:hover {
+.btn-primary:hover {
   background-color: var(--color-hover-button) !important;
+}
+
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: white;
 }
 
 .hidden {

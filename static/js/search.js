@@ -444,9 +444,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function openPreview(channelName, imageUrl, buttonText = 'Glej v živo', flag = false, genre = '', streamingPlatform = '', info = '', cast = '') {
     const modal = document.getElementById('previewModal');
     const title = document.getElementById('previewTitle');
-    const modalImage = modal.querySelector('.preview-image img');
-    const playButton = document.querySelector('.play-btn');
-    const startOverButton = document.querySelector('.start-over-btn');
+    const modalImage = modal.querySelector('previewImage');
+    const playButton = document.getElementById('playButton');
+    const startOverButton = document.getElementById('startOverButton');
     const genreSpan = document.getElementById('previewGenre');
     const infoSpan = document.getElementById('previewInfo');
     const streamingPlatformSpan = document.getElementById('previewStreamingPlatform');
