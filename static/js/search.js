@@ -91,29 +91,22 @@ function searchMovies(query) {
         // Create a new table cell (td) for each movie
         id_i += 1;
         movieCell = document.createElement('td');
-        movieCell.style.textAlign = "center"; // Center the image within the cell
         movieCell.style.padding = "10px"; // Optional padding for spacing between images
 
         // Insert the image inside the cell with an overlay and title at the bottom
         movieCell.innerHTML = `
-    <div id="reco-0-${id_i}" onclick="openPreview('${movie.title}', '../static/images/${movie.image}', 'Predvajaj', false, '${movie.description}', '${movie.channel}', 'Film, 210 min', 'Actor details here')" style="width: 200px; height: 150px; position: relative; border-radius: 10px; overflow: hidden;">
-        <!-- Dark overlay -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-
-        <!-- Image -->
-        <img src="../static/images/${movie.image}" alt="${movie.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
-
-        <!-- Title at the bottom of the image, aligned left -->
-        <div style="position: absolute; bottom: 20px; left: 10px; z-index: 2; color: white; font-size: 1.2em; font-weight: bold;">
-            ${movie.title}
-        </div>
-
-        <!-- Channel name at the bottom (smaller font size), aligned left -->
-        <div style="position: absolute; bottom: 5px; left: 10px; z-index: 2; color: white; font-size: 0.8em;">
-            ${movie.channel}
-        </div>
-    </div>
-`;
+        <div id="reco-1-${id_i}" class="card card-m" onclick="openPreview('${movie.title}', '../static/images/${movie.image}', 'Predvajaj', false, '${movie.description}', '${movie.channel}', 'Film, 210 min', 'Actor details here')">
+            <div class="card-image">
+                <img src="../static/images/${movie.image}" alt="${movie.title}">
+                <div class="card-overlay p-4">
+                    <div class="card-content">
+                        <h3 class="fw-bold text-white"> ${movie.title}</h3>
+                        <span class="channel-name text-white fw-bold mt-1">${movie.channel}</span>
+                    </div>                        
+                </div>
+            </div>
+        </div>  
+        `;
 
         
         // Append the movie cell (td) to the first row (tr)
@@ -128,30 +121,22 @@ function searchMovies(query) {
         // Create a new table cell (td) for each movie
         id_i += 1;
         movieCell = document.createElement('td');
-        movieCell.style.textAlign = "center"; // Center the image within the cell
         movieCell.style.padding = "10px"; // Optional padding for spacing between images
 
         // Insert the image inside the cell with an overlay and title at the bottom
         movieCell.innerHTML = `
-    <div id="reco-1-${id_i}" onclick="openPreview('${movie.title}', '../static/images/${movie.image}', 'Predvajaj', false, '${movie.description}', '${movie.channel}', 'Film, 210 min', 'Actor details here')" style="width: 200px; height: 150px; position: relative; border-radius: 10px; overflow: hidden;">
-        <!-- Dark overlay -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-
-        <!-- Image -->
-        <img src="../static/images/${movie.image}" alt="${movie.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
-
-        <!-- Title at the bottom of the image, aligned left -->
-        <div style="position: absolute; bottom: 20px; left: 10px; z-index: 2; color: white; font-size: 1.2em; font-weight: bold;">
-            ${movie.title}
-        </div>
-
-        <!-- Channel name at the bottom (smaller font size), aligned left -->
-        <div style="position: absolute; bottom: 5px; left: 10px; z-index: 2; color: white; font-size: 0.8em;">
-            ${movie.channel}
-        </div>
-    </div>
-`;
-
+        <div id="reco-1-${id_i}" class="card card-m" onclick="openPreview('${movie.title}', '../static/images/${movie.image}', 'Predvajaj', false, '${movie.description}', '${movie.channel}', 'Film, 210 min', 'Actor details here')">
+            <div class="card-image">
+                <img src="../static/images/${movie.image}" alt="${movie.title}">
+                <div class="card-overlay p-4">
+                    <div class="card-content">
+                        <h3 class="fw-bold text-white"> ${movie.title}</h3>
+                        <span class="channel-name text-white fw-bold mt-1">${movie.channel}</span>
+                    </div>                        
+                </div>
+            </div>
+        </div>  
+        `;
         
         // Append the movie cell (td) to the second row (tr)
         movieContainer.querySelectorAll('tr')[1].appendChild(movieCell);
